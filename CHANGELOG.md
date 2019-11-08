@@ -15,3 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Created locations.py
  - Created menu.py
  - Created properties.py
+
+## [0.0.2] - 2019-11-07
+### Changed
+- Adding continuous play functionality to menu.py
+- Updated Task to reflect changes
+- Updated locations to reflect new game

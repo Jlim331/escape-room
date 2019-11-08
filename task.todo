@@ -4,9 +4,11 @@ Task:
     ✔ create game.py @done(2019-11-07 13:50) @project(Task)
     ✔ create menu.py @done(2019-11-07 13:50) @project(Task)
     ✔ create locations.py @done(2019-11-07 13:50) @project(Task)
+    ☐ update properties.py
+    ☐ update menu.py to work with nested dictionaries
 
 Assignments:
-    ☐ create continuous play
+    ✔ create continuous play @done(2019-11-07 18:19) @project(Assignments)
 
 Classes:
     ☐ Locations
