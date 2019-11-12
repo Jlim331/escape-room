@@ -45,7 +45,7 @@ def menuLDesc(menuName, key):
     # Checks if user entered a valid input or quit
     while option not in menuName[key] or option == "quit":
         if option == "quit":  # if quit, quit
-            print("Have a good night hun")
+            print("Goodbye")
             break
         else:  # else print options and ask for input
             print(f"I got, {str(menuName[key])[1:-1]} watchu want?")
