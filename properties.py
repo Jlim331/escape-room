@@ -62,15 +62,12 @@ locations = {
         "description": "You find yourself in a forest, what will you do?",
     }
 }
-print("\nInventory")
-# Prints out the content of the weapons nested dictionary
-nestedDictPrinter(inventory)
-print("\nMobs")
-# Prints out the content of the mobs nested dictionary
-nestedDictPrinter(mobs)
-print("\nCharacter")
-# Prints out the content of the character nested dictionary
-nestedDictPrinter(character)
-print("\nLocations")
-# Prints out the content of the locations nested dictionary
-nestedDictPrinter(locations)
+
+escapeRoom = {
+    "description": "you find yourself in a room, in it you see...",
+    "cabinet": ["go back"],
+    "chest": ["go back"],
+    "bookcase": ["go back"],
+    "painting": ["go back"],
+    "desk": ["go back"],
+}

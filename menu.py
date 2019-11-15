@@ -62,5 +62,3 @@ escapeRoom = {
     "painting": ["go back"],
     "desk": ["go back"],
 }
-
-choosenPath(escapeRoom)
