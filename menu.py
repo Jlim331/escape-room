@@ -11,6 +11,7 @@ def choosenPath(menuName):
     for key in menuName:  # Prints keys
         if key == "description":
             print(f"{menuName[key].capitalize()}")
+            print("Type quit, to end game")
         else:
             print("\t- " + key.title())
     # Input for choosing the menu
@@ -28,7 +29,7 @@ def choosenPath(menuName):
             option = input("")
     for i in options:
         if option == i:  # Checks which path player chooses
-            print(f"You search the {option} and see\n")
+            print(f"\n\nYou search the {option} and see")
             menuLDesc(menuName, option)  # prints out next menu
 
 
@@ -53,12 +54,3 @@ def menuLDesc(menuName, key):
     for i in menuName[key]:  # checks which path the player chose
         if option == "go back":  # if go back, reruns previous menu
             choosenPath(menuName)
-
-escapeRoom = {
-    "description": "you find yourself in a room, in it you see...",
-    "cabinet": ["go back"],
-    "chest": ["go back"],
-    "bookcase": ["go back"],
-    "painting": ["go back"],
-    "desk": ["go back"],
-}

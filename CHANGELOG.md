@@ -21,3 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added continuous play functionality to menu.py
 - Updated Task to reflect changes
 - Updated locations to reflect new game
+
+## [0.0.3] - 2019-11-18
+### Added
+ - Added a description for how to quit the game
+ - Added more options for the user to search
+ - Created map.py to generate a map of the locations and elements
+
+### Changed
+ - Changed format of printing in menu.py to look more readable
+ - Updated properties.py to reflect new game
+ - Organized escapeRoom into a module
+ - Renamed nestedDictPrint to printNDict in properties.py

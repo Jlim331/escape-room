@@ -4,6 +4,6 @@
 # File to import files to play the game
 import menu
 import properties
+import locations
 
-
-menu.choosenPath(properties.escapeRoom)
+menu.choosenPath(locations.escapeRoom)
