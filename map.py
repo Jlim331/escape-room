@@ -29,18 +29,19 @@ def arrayGen(list):
     return array
 
 def centerStart(array):
-    center = array[1,1]
-    array = np.where(array==center, "start", array)
-    array[2][2] = center
+    global center
+    center = m.ceil(float(len(array)) / 2)
+    center = center - 1
+    centerTile = array[center, center]
+    array = np.where(array==centerTile, "start", array)
+    # array[2][2] = centerTile
     return array
+
 
 map = []
 listGen(loc.escapeRoom, map)
-print(map)
-
 array = arrayGen(map)
-print(array)
-print(tab.tabulate(array, tablefmt="simple"))
-
 array = centerStart(array)
 print(tab.tabulate(array, tablefmt="simple"))
+
+print(center)
