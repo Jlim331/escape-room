@@ -13,7 +13,6 @@ escapeRoom = {
     "shelve": ["go back"],
     "table": ["go back"],
     "chair": ["go back"],
-    "entertainment center": ["go back"],
 }
 
 cabinet = {
