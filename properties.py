@@ -18,16 +18,3 @@ def printNDict(dictName):
             key along with the value with a tab before.
             """
             print(f"\t{items.title()} - {key[items]}")
-
-escapeRoom = {
-    "description": "you find yourself in a room and in it you see...",
-    "cabinet": ["go back"],
-    "chest": ["go back"],
-    "bookcase": ["go back"],
-    "painting": ["go back"],
-    "desk": ["go back"],
-    "shelve": ["go back"],
-    "table": ["go back"],
-    "chair": ["go back"],
-    "entertainment center": ["go back"],
-}

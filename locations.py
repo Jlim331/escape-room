@@ -5,6 +5,7 @@
 
 
 escapeRoom = {
+    "description": "you find yourself in a room, in it you see..",
     "cabinet": ["go back"],
     "chest": ["go back"],
     "bookcase": ["go back"],
