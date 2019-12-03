@@ -3,7 +3,6 @@
 # 11/18/2019
 # Map to see options and elements
 import numpy as np
-import locations as loc
 import math as m
 import tabulate as tab
 
@@ -30,7 +29,7 @@ def arrayGen(list):
         sqrtElem = int(m.ceil(sqrtElem))  # rounds up sqrtElem
     else:
         sqrtElem = int(sqrtElem)
-    # finds the difference between elem and sqrt and then appends for the diff
+    # finds the difference between elem and sqrt and then appendss for the diff
     diffElem = int(m.pow(sqrtElem, 2)) - elem
     for i in range(diffElem):
         list.append("")
@@ -63,10 +62,3 @@ def CenterStart(array):
     array[-1][-1] = centerTile
     array[center][center] = "start"  # replaces the center tile with start
     return array
-
-
-# map = []
-# listGen(loc.escapeRoom, map)
-# array = arrayGen(map)
-# array = randCenterStart(array)
-# print(tab.tabulate(array, tablefmt="simple"))

@@ -2,7 +2,25 @@
 # Comp Sci 30 P4
 # 11/07/2019
 # Nested dictionaries for game properties
+import numpy as np
+import math as m
+import tabulate as tab
 
+
+class Player:
+    def __init__(self, name, inventory, position):
+        self.name = name
+        self.inventory = inventory
+        self.position = position
+
+
+class Map:
+    def __init__(self, array):
+        a
+
+class Room(Map):
+    def __init__(self,):
+        a
 
 def printNDict(dictName):
     """Prints out content in a nested dictionary with up to 2 layers,

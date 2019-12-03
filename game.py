@@ -7,11 +7,13 @@ import properties as prop
 import locations as loc
 import map as mp
 import tabulate as tab
+import numpy as np
 
 map = []
 mp.listGen(loc.escapeRoom, map)
 array = mp.arrayGen(map)
 array = mp.randCenterStart(array)
-print(tab.tabulate(array, tablefmt="simple"))
-
-menu.choosenPath(loc.escapeRoom)
+print(array)
+print(np.where(array == 'desk'))
+# print(tab.tabulate(array, tablefmt="simple"))
+# menu.choosenPath(loc.escapeRoom)
