@@ -8,19 +8,27 @@ import tabulate as tab
 
 
 class Player:
+    """Contains player name, inventory and position"""
     def __init__(self, name, inventory, position):
         self.name = name
         self.inventory = inventory
         self.position = position
 
+    def findPosition(self):
+        a
+
 
 class Map:
+    """Contains world map and event conditions"""
     def __init__(self, array):
         a
 
+
 class Room(Map):
+    """Contains positional values, roomInv and events"""
     def __init__(self,):
         a
+
 
 def printNDict(dictName):
     """Prints out content in a nested dictionary with up to 2 layers,

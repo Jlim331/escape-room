@@ -11,9 +11,9 @@ import numpy as np
 
 map = []
 mp.listGen(loc.escapeRoom, map)
-array = mp.arrayGen(map)
-array = mp.randCenterStart(array)
-print(array)
+array = mp.randArrayGen(map)
+array = mp.CenterStart(array)
 print(np.where(array == 'desk'))
-# print(tab.tabulate(array, tablefmt="simple"))
+print(tab.tabulate(array, tablefmt="simple"))
+print(np.where(array == 'desk'))
 # menu.choosenPath(loc.escapeRoom)

@@ -33,3 +33,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Updated properties.py to reflect new game
  - Organized escapeRoom into a module
  - Renamed nestedDictPrint to printNDict in properties.py
+
+ ## [0.0.?] - 2019-12-03
+ ### Added
+ - Added movement.py file for the movement in the game
+
+ ### Changed
+ -
+
+ ### Fixed
+ - Fixed a bug where rand center would duplicate center tile
