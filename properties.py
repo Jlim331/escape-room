@@ -9,24 +9,44 @@ import tabulate as tab
 
 class Player:
     """Contains player name, inventory and position"""
-    def __init__(self, name, inventory, position):
+    def __init__(self, name, inventory):
         self.name = name
         self.inventory = inventory
-        self.position = position
+        self.x = 0
+        self.y = 0
 
-    def findPosition(self):
-        a
+    def description(self):
+        print(f"Hello {self.name}")
+        print(f"Inventory: \n{self.inventory}")
+
+    def findPos(self):
+        "Used to find position for debugging purpose"
+        print(f"y: {self.y}")
+        print(f"x: {self.x}")
+
+    def moveUp(self):
+        self.y += 1
+
+    def moveDown(self):
+        self.y -=1
+
+    def moveRight(self):
+        self.x += 1
+
+    def moveLeft(self):
+        self.x -= 1
 
 
 class Map:
     """Contains world map and event conditions"""
-    def __init__(self, array):
-        a
+    def __init__(self, map, eventCond):
+        self.map = maps
+        self.eventCond = eventCond
 
 
 class Room(Map):
     """Contains positional values, roomInv and events"""
-    def __init__(self,):
+    def __init__(self, roomInv, events):
         a
 
 
