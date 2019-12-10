@@ -32,9 +32,7 @@ while flag:
         player.moveUp()
         # error handling if player tries to go out of map
         if player.y < 0:
-            print(
-                form.Colors.RED + "Why you tryna go there?" + form.Colors.END
-            )
+            print("Why you tryna go there?")
             player.y += 1
             mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
         else:
@@ -45,9 +43,7 @@ while flag:
         player.moveDown()
         # error handling if player tries to go out of map
         if player.y > arrayMaxY:
-            print(
-                form.Colors.RED + "Why you tryna go there?" + form.Colors.END
-            )
+            print("Why you tryna go there?")
             player.y -= 1
             mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
         else:
@@ -58,9 +54,7 @@ while flag:
         player.moveRight()
         # error handling if player tries to go out of map
         if player.x > arrayMaxX:
-            print(
-                form.Colors.RED + "Why you tryna go there?" + form.Colors.END
-            )
+            print("Why you tryna go there?")
             player.x -= 1
             mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
         else:
@@ -71,15 +65,14 @@ while flag:
         player.moveLeft()
         # error handling if player tries to go out of map
         if player.x < 0:
-            print(
-                form.Colors.RED + "Why you tryna go there?" + form.Colors.END
-            )
+            print("Why you tryna go there?")
             player.x += 1
             mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
         else:
             mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
     # checks input for "i" or "inventory"
     elif userIn in ["inventory", "i"]:
+        mp.highlighPos(player.y, player.x, escapeRoom)
         print("\nOpening Inventory...\nInventory:")
         player.invGen()  # generates and prints inv
     # checks input for "q or "quit"
@@ -88,8 +81,5 @@ while flag:
         flag = False  # breaks loop
     # if input is none of the above then ask for it again
     else:
-        print(
-            form.Colors.RED + "Invalid input, please try again" +
-            form.Colors.END
-        )
+        print("Invalid input, please try again")
         mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
