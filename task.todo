@@ -6,7 +6,8 @@ Task:
     ✔ create locations.py @done(2019-11-07 13:50) @project(Task)
     ☐ update properties.py
     ☐ update menu.py to work with nested dictionaries
-    ☐ Create Classes for objects in game
+    ✔ Create Classes for objects in game @done(2019-12-09 21:44) @project(Task)
+    ☐ Create Title Screen
 
 Assignments:
     ✔ create continuous play @done(2019-11-07 18:19) @project(Assignments)

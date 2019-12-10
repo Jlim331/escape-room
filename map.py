@@ -5,6 +5,64 @@
 import numpy as np
 import math as m
 import tabulate as tab
+import format as form
+global map  # globalize map to be used in other files
+
+
+class MapTile:
+    """Map Class to create tiles for the game"""
+    def __init__(self, name, desc, inv):
+        self.name = name  # initiates with the name of the tile
+
+    def __str__(self):
+        return self.name  # returns just the tile name for the array
+
+
+class winTile(MapTile):
+    """Class to create the winning tile"""
+    def __init__(self, name):
+        self.name = name  # initiates with the name of the tile
+
+
+class startTile(MapTile):
+    """Class to create the starting tile"""
+    def __init__(self, name):
+        self.name = name  # initiates with the name of the tile
+
+
+class endTile(MapTile):
+    """Class to create the "giving up" tile"""
+    def __init__(self, name):
+        self.name = name  # initiates with the name of the tile
+
+
+startTile = startTile("start")  # Creates start tile
+endTile = endTile("exit door")  # Creates end tile
+winTile = winTile("locked door")  # Creates win tile
+
+# Creates array for the game
+map = np.array([
+    ["cabinet", "chest", "bookcase", endTile.__str__()],
+    ["painting", startTile.__str__(), "desk", ""],
+    ["shelve", "table", "chair", winTile.__str__()]
+])
+
+
+def highlighPos(y, x, array):
+    """Function that takes an x and y cord of an array and highlights that
+    item"""
+    highlightTile = "**" + array[y][x] + "**"
+    # replaces old tile with new tiles
+    highlighted = np.where(array == array[y][x], highlightTile, array)
+    # prints out the table but with the highlighted tile higlighted
+    print(tab.tabulate(highlighted, tablefmt="simple"))
+
+
+def findMax(array):
+    """finds the max num of row in an array"""
+    max = len(array) - 1
+    max = int(max)
+    return max
 
 
 def listGen(dictionary, list):
@@ -13,7 +71,7 @@ def listGen(dictionary, list):
         list.append(i)
 
 
-def removeDesc(list):
+def removename(list):
     """Function to remove the key description from a list"""
     for i in list:  # searches for description and removes it
         if i == "description":
