@@ -5,6 +5,7 @@
 import player
 import map as mp
 import format as form
+import os
 
 
 print("Hello what is your name?")  # initiates game with an intro
@@ -33,12 +34,14 @@ while flag:
             player.moveUp()
             # error handling if player tries to go out of map
             if player.y < 0:
+                os.system("cls")
                 print("Why you tryna go there?")
                 player.y += 1
                 # prints out table
                 mp.highlighPos(player.y, player.x, escapeRoom)
             else:
                 # prints out table
+                os.system("cls")
                 mp.highlighPos(player.y, player.x, escapeRoom)
         # checks input for "down" or "s"
         elif userIn in ["down", "s"]:
@@ -46,12 +49,14 @@ while flag:
             player.moveDown()
             # error handling if player tries to go out of map
             if player.y > arrayMaxY:
+                os.system("cls")
                 print("Why you tryna go there?")
                 player.y -= 1
                 # prints out table
                 mp.highlighPos(player.y, player.x, escapeRoom)
             else:
                 # prints out table
+                os.system("cls")
                 mp.highlighPos(player.y, player.x, escapeRoom)
         # checks input for "right" or "d"
         elif userIn in ["right", "d"]:
@@ -59,12 +64,14 @@ while flag:
             player.moveRight()
             # error handling if player tries to go out of map
             if player.x > arrayMaxX:
+                os.system("cls")
                 print("Why you tryna go there?")
                 player.x -= 1
                 # prints out table
                 mp.highlighPos(player.y, player.x, escapeRoom)
             else:
                 # prints out table
+                os.system("cls")
                 mp.highlighPos(player.y, player.x, escapeRoom)
         # checks input for "left" or "a"
         elif userIn in ["left", "a"]:
@@ -72,15 +79,18 @@ while flag:
             player.moveLeft()
             # error handling if player tries to go out of map
             if player.x < 0:
+                os.system("cls")
                 print("Why you tryna go there?")
                 player.x += 1
                 # prints out table
                 mp.highlighPos(player.y, player.x, escapeRoom)
             else:
                 # prints out table
+                os.system("cls")
                 mp.highlighPos(player.y, player.x, escapeRoom)
         # checks input for "i" or "inventory"
         elif userIn in ["inventory", "i"]:
+            os.system("cls")
             mp.highlighPos(player.y, player.x, escapeRoom)
             print("\nOpening Inventory...\nInventory:")
             player.invGen()  # generates and prints inv
@@ -90,5 +100,10 @@ while flag:
             flag = False  # breaks loop
         # if input is none of the above then ask for it again
     except:
-        print("Invalid input, please try again")
+        os.system("cls")
         mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
+        print("Invalid input, please try again")
+    else:
+        os.system("cls")
+        mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
+        print("Invalid input, please try again")

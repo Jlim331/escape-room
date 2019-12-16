@@ -51,11 +51,11 @@ map = np.array([
 def highlighPos(y, x, array):
     """Function that takes an x and y cord of an array and highlights that
     item"""
-    highlightTile = "**" + array[y][x] + "**"
+    highlightTile = "~" + array[y][x] + "~"
     # replaces old tile with new tiles
     highlighted = np.where(array == array[y][x], highlightTile, array)
     # prints out the table but with the highlighted tile higlighted
-    print(tab.tabulate(highlighted, tablefmt="simple"))
+    print(tab.tabulate(highlighted, tablefmt="grid"))
 
 
 def findMax(array):
