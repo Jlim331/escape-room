@@ -25,6 +25,7 @@ while flag:
     print("W: GO UP\tA: GO RIGHT\tQ: quit")
     print("D: GO LEFT\tS: GO DOWN\tI: Inventory")
     print("What would you like to do?")
+    print(player.findPos())
     # takes input
     userIn = input().lower()
     # checks input for "up" or "w"
@@ -99,11 +100,11 @@ while flag:
             print("thank you for playing")
             flag = False  # breaks loop
         # if input is none of the above then ask for it again
+        else:
+            os.system("cls")
+            mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
+            print("Invalid input, please try again")
     except:
-        os.system("cls")
-        mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
-        print("Invalid input, please try again")
-    else:
         os.system("cls")
         mp.highlighPos(player.y, player.x, escapeRoom)  # prints out table
         print("Invalid input, please try again")

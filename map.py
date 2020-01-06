@@ -11,11 +11,19 @@ global map  # globalize map to be used in other files
 
 class MapTile:
     """Map Class to create tiles for the game"""
-    def __init__(self, name, desc, inv):
+    def __init__(self, name, desc, inv, choices, x, y):
         self.name = name  # initiates with the name of the tile
+        self.desc = desc
+        self.inv = inv
+        self.choices = choices
+        self.x = x
+        self.y = y
 
     def __str__(self):
         return self.name  # returns just the tile name for the array
+
+    def options(self):
+        options = self.choices
 
 
 class winTile(MapTile):
@@ -39,12 +47,21 @@ class endTile(MapTile):
 startTile = startTile("start")  # Creates start tile
 endTile = endTile("exit door")  # Creates end tile
 winTile = winTile("locked door")  # Creates win tile
+cabinetTile = MapTile("cabinet", "fill in desc", [""], [""], 0, 0)
+chestTile = MapTile("chest", "fill in desc", [""], [""], 1, 0)
+bookcaseTile = MapTile("bookcase", "fill in desc", [""], [""], 2, 0)
+paintingTile = MapTile("painting", "fill in desc", [""], [""], 0, 1)
+deskTile = MapTile("desk", "fill in desc", [""], [""], 2, 1)
+emptyTile = MapTile(" ", "fill in desc", [""], [""], 3, 1)
+shelveTile = MapTile("shelve", "fill in desc", [""], [""], 0, 2)
+tableTile = MapTile("table", "fill in desc", [""], [""], 1, 2)
+chairTile = MapTile("chair", "fill in desc", [""], [""], 2, 2)
 
 # Creates array for the game
 map = np.array([
-    ["cabinet", "chest", "bookcase", endTile.__str__()],
-    ["painting", startTile.__str__(), "desk", ""],
-    ["shelve", "table", "chair", winTile.__str__()]
+    [cabinetTile.__str__(), chestTile.__str__(), bookcaseTile.__str__(), endTile.__str__()],
+    [paintingTile.__str__(), startTile.__str__(), deskTile.__str__(), emptyTile.__str__()],
+    [shelveTile.__str__(), tableTile.__str__(), chairTile.question__str__(), winTile.__str__()]
 ])
 
 
@@ -125,3 +142,8 @@ def CenterStart(array):
     array[-1][-1] = centerTile
     array[center][center] = "start"  # replaces the center tile with start
     return array
+
+def choicePrinter(playerx, player y, tilex, tiley, tileOption):
+    if player x == tilex and playery ==tiley:
+        for option in tileOption:
+            print(option)
