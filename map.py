@@ -11,58 +11,63 @@ global map  # globalize map to be used in other files
 
 class MapTile:
     """Map Class to create tiles for the game"""
-    def __init__(self, name, desc, inv, choices, x, y):
-        self.name = name  # initiates with the name of the tile
+    def __init__(self, name, desc, x, y):
+        self.name = name
         self.desc = desc
-        self.inv = inv
-        self.choices = choices
         self.x = x
         self.y = y
-
-    def __str__(self):
-        return self.name  # returns just the tile name for the array
-
-    def options(self):
-        options = self.choices
 
 
 class winTile(MapTile):
     """Class to create the winning tile"""
-    def __init__(self, name):
-        self.name = name  # initiates with the name of the tile
+    def __init__(self, name, desc, x, y):
+        super().__init__(name, desc, x, y)
 
 
 class startTile(MapTile):
     """Class to create the starting tile"""
-    def __init__(self, name):
-        self.name = name  # initiates with the name of the tile
+    def __init__(self, name, desc, x, y):
+        super().__init__(name, desc, x, y)
 
 
 class endTile(MapTile):
     """Class to create the "giving up" tile"""
-    def __init__(self, name):
-        self.name = name  # initiates with the name of the tile
+    def __init__(self, name, desc, x, y):
+        super().__init__(name, desc, x, y)
 
 
-startTile = startTile("start")  # Creates start tile
-endTile = endTile("exit door")  # Creates end tile
-winTile = winTile("locked door")  # Creates win tile
-cabinetTile = MapTile("cabinet", "fill in desc", [""], [""], 0, 0)
-chestTile = MapTile("chest", "fill in desc", [""], [""], 1, 0)
-bookcaseTile = MapTile("bookcase", "fill in desc", [""], [""], 2, 0)
-paintingTile = MapTile("painting", "fill in desc", [""], [""], 0, 1)
-deskTile = MapTile("desk", "fill in desc", [""], [""], 2, 1)
-emptyTile = MapTile(" ", "fill in desc", [""], [""], 3, 1)
-shelveTile = MapTile("shelve", "fill in desc", [""], [""], 0, 2)
-tableTile = MapTile("table", "fill in desc", [""], [""], 1, 2)
-chairTile = MapTile("chair", "fill in desc", [""], [""], 2, 2)
+startTile = startTile("start", "fill in desc", 1, 1)
+exitTile = endTile("exit door", "fill in desc", 3, 0)
+winTile = winTile("locked door", "fill in desc", 3, 2)
+cabinetTile = MapTile("cabinet", "fill in desc", 0, 0)
+chestTile = MapTile("chest", "fill in desc", 1, 0)
+bookcaseTile = MapTile("bookcase", "fill in desc", 2, 0)
+paintingTile = MapTile("painting", "fill in desc", 0, 1)
+deskTile = MapTile("desk", "fill in desc", 2, 1)
+emptyTile = MapTile(" ", "fill in desc", 3, 1)
+shelveTile = MapTile("shelve", "fill in desc", 0, 2)
+tableTile = MapTile("table", "fill in desc", 1, 2)
+chairTile = MapTile("chair", "fill in desc", 2, 2)
+
 
 # Creates array for the game
-map = np.array([
-    [cabinetTile.__str__(), chestTile.__str__(), bookcaseTile.__str__(), endTile.__str__()],
-    [paintingTile.__str__(), startTile.__str__(), deskTile.__str__(), emptyTile.__str__()],
-    [shelveTile.__str__(), tableTile.__str__(), chairTile.question__str__(), winTile.__str__()]
-])
+map =[
+    [cabinetTile, chestTile, bookcaseTile, exitTile],
+    [paintingTile, startTile, deskTile, emptyTile],
+    [shelveTile, tableTile, chairTile, winTile]
+]
+
+def tileAt(x, y):
+    if x < 0 or y < 0:
+        return None
+    try:
+        return map [y][x]
+    except:
+        return None
+
+
+def tileExists(x, y):
+    return map.get((x, y))
 
 
 def highlighPos(y, x, array):
@@ -143,7 +148,7 @@ def CenterStart(array):
     array[center][center] = "start"  # replaces the center tile with start
     return array
 
-def choicePrinter(playerx, player y, tilex, tiley, tileOption):
-    if player x == tilex and playery ==tiley:
+def choicePrinter(playerx, playery, tilex, tiley, tileOption):
+    if playerx == tilex and playery ==tiley:
         for option in tileOption:
             print(option)

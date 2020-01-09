@@ -8,6 +8,23 @@ import format as form
 import os
 
 
+def titleScreenSelctions():
+    option = input("").lower()
+    if option in ["play", "p"]:
+        startGame()
+    elif option in ["help", "h"]:
+        helpMenu()
+    elif option in ["quit", "q"]:
+        sys.exit()
+
+
+def titleScreen():
+    os.system('cls')
+    print("")
+
+def helpScreen():
+    None
+
 print("Hello what is your name?")  # initiates game with an intro
 name = input("Name: ").title()  # store input
 player = player.Player(name, ["Test"])  # creates player class

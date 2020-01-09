@@ -4,15 +4,32 @@ Task:
     ✔ create game.py @done(2019-11-07 13:50) @project(Task)
     ✔ create menu.py @done(2019-11-07 13:50) @project(Task)
     ✔ create locations.py @done(2019-11-07 13:50) @project(Task)
-    ☐ update properties.py
-    ☐ update menu.py to work with nested dictionaries
     ✔ Create Classes for objects in game @done(2019-12-09 21:44) @project(Task)
     ☐ Create Title Screen
+    ☐ Create Help Screen
+    ☐ Add unique option to Cabinet
+    ☐ Add unique option to Chest
+    ☐ Add unique option to Bookcase
+    ☐ Add unique option to Exit
+    ☐ Add unique option to Painting
+    ☐ Add unique option to Desk
+    ☐ Add unique option to Shelve
+    ☐ Add unique option to Table
+    ☐ Add unique option to Sofa
+    ☐ Add unique option to Locked Door
+    ☐ Create a way to show each unique option at the certain tile
+    ☐ Create a way to move
+    ☐ Create a way to generate map
+    ☐ Create Items
+    ☐ Create a turn counter
+    ☐ Implement the winning conditions
 
 Assignments:
     ✔ create continuous play @done(2019-11-07 18:19) @project(Assignments)
     ✔ create modules and maps @done(2019-12-03 13:23) @project(Assignments)
 
 Classes:
-    ☐ Locations
-    ☐ Inventory
+    ☐ Tile
+    ☐ Player
+    ☐ Items
+    ☐ Actions

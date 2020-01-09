@@ -34,14 +34,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Organized escapeRoom into a module
  - Renamed nestedDictPrint to printNDict in properties.py
 
- ## [0.0.4] - 2019-12-09
- ### Added
+## [0.0.4] - 2019-12-09
+### Added
  - Added movement.py file for the movement in the game
  - Added a xy based movement system in game.py
  - Added classes to store map tile objects in
 
- ### Removed
+### Removed
 - Removed the old choose your own adventure like menu system
 
- ### Fixed
+### Fixed
  - Fixed a bug where rand center would duplicate center tile
+
+## [0.0.4] - 2020-01-08
+### Added
+-
+
+### Changed
+- Changed the name to movement.py to action.py
+
+### Removed
+- removed formating for menu (color doens't work on all computers)
+- removed empty files
+
+### Fixed
+-
