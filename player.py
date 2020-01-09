@@ -6,7 +6,7 @@ import numpy as np
 import math as m
 import tabulate as tab
 import map as mp
-import action as act
+# import action as act
 
 
 class Player:

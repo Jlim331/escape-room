@@ -17,6 +17,9 @@ class MapTile:
         self.x = x
         self.y = y
 
+    def getName(self):
+        return self.name
+
 
 class winTile(MapTile):
     """Class to create the winning tile"""
@@ -34,6 +37,49 @@ class endTile(MapTile):
     """Class to create the "giving up" tile"""
     def __init__(self, name, desc, x, y):
         super().__init__(name, desc, x, y)
+
+
+class CabinetTile(MapTile):
+    def __init__(self):
+        super().__init__(name = "cabinet",
+                         desc = "fill in desc",
+                         x = 0,
+                         y = 0)
+
+
+class ChestTile(MapTile):
+    def __init__(self):
+        super().__init__(name = "chest",
+                         desc = "fill in desc",
+                         x = x,
+                         y = y)
+
+class BookcaseTile(MapTile):
+    def __init__(self):
+        super().__init__(name = "bookcase",
+                         desc = "fill in desc",
+                         x = x,
+                         y = y)
+
+
+class PaintingTile(MapTile):
+    def __init__(self):
+        super().__init__(name = "painting",
+                         desc = "fill in desc",
+                         x = x,
+                         y = y)
+
+
+class DeskTile(MapTile):
+    def __init__(self):
+        super().__init(name = "desk",
+                        desc = "fill in desc",
+                        x = x,
+                        y = y)
+
+
+class EmptyTile(MapTile):
+    def __
 
 
 startTile = startTile("start", "fill in desc", 1, 1)
@@ -56,6 +102,7 @@ map =[
     [paintingTile, startTile, deskTile, emptyTile],
     [shelveTile, tableTile, chairTile, winTile]
 ]
+
 
 def tileAt(x, y):
     if x < 0 or y < 0:
