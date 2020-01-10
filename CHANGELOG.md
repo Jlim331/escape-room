@@ -41,21 +41,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Added classes to store map tile objects in
 
 ### Removed
-- Removed the old choose your own adventure like menu system
+ - Removed the old choose your own adventure like menu system
 
 ### Fixed
  - Fixed a bug where rand center would duplicate center tile
 
 ## [0.0.4] - 2020-01-08
 ### Added
--
+ - Unique tile option to cabinet tile
+ - Title screen with play, help and quit option
+ - Class function for each tile
+ - Class function for actions
+ - Class function for items
 
 ### Changed
-- Changed the name to movement.py to action.py
+ - Changed the name to movement.py to action.py
 
 ### Removed
-- removed formating for menu (color doens't work on all computers)
-- removed empty files
+ - removed formatting for menu (color doesn't work on all computers)
+ - removed empty files
+ - removed old way of generating map
+
+## [0.0.5] - 2020-01-??
+### Added
+ -
+
+### Changed
+ -
+
+### Removed
+ -
 
 ### Fixed
--
+ -

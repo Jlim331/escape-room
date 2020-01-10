@@ -11,7 +11,7 @@ import os
 def titleScreenSelctions():
     option = input("").lower()
     if option in ["play", "p"]:
-        startGame()
+        play():
     elif option in ["help", "h"]:
         helpMenu()
     elif option in ["quit", "q"]:

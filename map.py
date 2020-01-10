@@ -1,7 +1,7 @@
 # Josh Lim
 # Comp Sci 30 P4
 # 11/18/2019
-# Map to see options and elements
+# File containing all tiles and map property
 import numpy as np
 import math as m
 import tabulate as tab
@@ -11,97 +11,204 @@ global map  # globalize map to be used in other files
 
 class MapTile:
     """Map Class to create tiles for the game"""
-    def __init__(self, name, desc, x, y):
+    def __init__(self, name, desc, event, x, y):
         self.name = name
         self.desc = desc
+        self.event = event
         self.x = x
         self.y = y
+
+    def search(self):
+        return self.event
 
     def getName(self):
         return self.name
 
+    def getDesc(self):
+        return self.desc
 
-class winTile(MapTile):
+    def tilePos(self):
+        return "x = {}, y = {}".format(self.x, self.y)
+
+
+class WinTile(MapTile):
     """Class to create the winning tile"""
-    def __init__(self, name, desc, x, y):
-        super().__init__(name, desc, x, y)
+    def __init__(self):
+        super().__init__(name = "locked door",
+                         desc = "fill in desc",
+                         event = """
+                         You see a locked door with three locks, do you wish to open the door?
+                         """,
+                         x = 3,
+                         y = 2)
 
 
-class startTile(MapTile):
+class StartTile(MapTile):
     """Class to create the starting tile"""
-    def __init__(self, name, desc, x, y):
-        super().__init__(name, desc, x, y)
+    def __init__(self):
+        super().__init__(name = "start",
+                         desc = """
+                                     Welcome to the escape room!!!
+                          The games objective is to find all three keys in the
+                             room before turn 50 or else you lose the game.
+                         """,
+                         event = "Nothing to see here :)",
+                         x = 1,
+                         y = 1)
 
 
-class endTile(MapTile):
+class EndTile(MapTile):
     """Class to create the "giving up" tile"""
-    def __init__(self, name, desc, x, y):
-        super().__init__(name, desc, x, y)
+    def __init__(self):
+        super().__init__(name = "exit",
+                         desc = "fill in desc",
+                         event = """
+                         You see a door with an exit sign on top, do you wish to open the door?
+                         WARNING - THIS WILL BE TREATED AS YOU GIVING UP ON THE GAME - WARNING
+                         """,
+                         x = 0,
+                         y = 3)
 
 
 class CabinetTile(MapTile):
-    def __init__(self):
+    def __init__(self, item):
+        self.searchFlag = False
+        self.item = item
         super().__init__(name = "cabinet",
                          desc = "fill in desc",
+                         event = """
+                         You see a generic cabinet with some clothes hanged,
+                         a mirror and a drawer. What would you like to do?
+                         """,
                          x = 0,
                          y = 0)
 
+    def search(self):
+        self.searchFlag = True
+        return self.event
+
+    def searchClothes(self):
+        if self.searchFlag == True:
+            return """
+            You searched through the clothes and noticed some Balenciaga,
+            Supreme, Gucci, Louis Voutton, but didn't find any keys at all.
+            """
+        else:
+            return None
+
+    def lookMirror(self):
+        if self.searchFlag == True:
+            return """
+            You look in the mirror and notice a reflection that resembles yourself
+            """
+        else:
+            return None
+
+    def openDrawer(self, player):
+        if self.searchFlag == True:
+            player.inventory.append(self.item)
+            return """
+            You open the drawer and found a key!
+            """
+        else:
+            return None
+
+cabinetTile = CabinetTile("key")
 
 class ChestTile(MapTile):
     def __init__(self):
         super().__init__(name = "chest",
                          desc = "fill in desc",
-                         x = x,
-                         y = y)
+                         event = """
+                         You see a chest
+                         What would you like to do?
+                         """,
+                         x = 1,
+                         y = 0)
+
+    def openChest(self, player):
+        if "chest key" in player.inventory:
+            player.inventory.append("key")
+            player.inventory.remove("chest key")
+            return """
+            You opened the chest and found a key
+            """
+        else:
+            return """
+            You need a key to open this chest.
+            """
+
+chestTile = ChestTile()
 
 class BookcaseTile(MapTile):
     def __init__(self):
+        self.searchFlag = False
         super().__init__(name = "bookcase",
                          desc = "fill in desc",
-                         x = x,
-                         y = y)
+                         event = """
+                         You see a bookcase filled with a bunch of red books,
+                         textbook and magazine
+                         """,
+                         x = 2,
+                         y = 0)
+
+    def search(self):
+        self.searchFlag = True
+        return self.event
 
 
 class PaintingTile(MapTile):
     def __init__(self):
         super().__init__(name = "painting",
                          desc = "fill in desc",
-                         x = x,
-                         y = y)
+                         x = 0,
+                         y = 1)
 
 
 class DeskTile(MapTile):
     def __init__(self):
-        super().__init(name = "desk",
+        super().__init__(name = "desk",
                         desc = "fill in desc",
-                        x = x,
-                        y = y)
+                        x = 2,
+                        y = 1)
 
 
 class EmptyTile(MapTile):
-    def __
+    def __init__(self):
+        super().__init__(name = "",
+                         desc = "fill in desc",
+                         x = 3,
+                         y = 1)
 
 
-startTile = startTile("start", "fill in desc", 1, 1)
-exitTile = endTile("exit door", "fill in desc", 3, 0)
-winTile = winTile("locked door", "fill in desc", 3, 2)
-cabinetTile = MapTile("cabinet", "fill in desc", 0, 0)
-chestTile = MapTile("chest", "fill in desc", 1, 0)
-bookcaseTile = MapTile("bookcase", "fill in desc", 2, 0)
-paintingTile = MapTile("painting", "fill in desc", 0, 1)
-deskTile = MapTile("desk", "fill in desc", 2, 1)
-emptyTile = MapTile(" ", "fill in desc", 3, 1)
-shelveTile = MapTile("shelve", "fill in desc", 0, 2)
-tableTile = MapTile("table", "fill in desc", 1, 2)
-chairTile = MapTile("chair", "fill in desc", 2, 2)
+class ShelveTile(MapTile):
+    def __init(self):
+        super().__init__(name = "shelve",
+                         desc = "fill in desc",
+                         x = 0,
+                         y = 2)
 
 
-# Creates array for the game
-map =[
-    [cabinetTile, chestTile, bookcaseTile, exitTile],
-    [paintingTile, startTile, deskTile, emptyTile],
-    [shelveTile, tableTile, chairTile, winTile]
-]
+class TableTile(MapTile):
+    def __init__(self):
+        super().__init__(name = "table",
+                        desc = "fill in desc",
+                        x = 1,
+                        y = 2)
+
+
+class ChairTile(MapTile):
+    def __init__(self):
+        super().__init__(name = "chair",
+                         desc = "fill in desc",
+                         x = 2,
+                         y= 2)
+
+# map =[
+#     [CabinetTile(), ChestTile(), BookcaseTile(), EndTile()],
+#     [PaintingTile(), StartTile(), DeskTile(), EmptyTile()],
+#     [ShelveTile(), TableTile(), ChairTile(), WinTile()]
+# ]
 
 
 def tileAt(x, y):

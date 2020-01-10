@@ -1,7 +1,7 @@
 # Josh Lim
 # Comp Sci 30 P4
 # 11/07/2019
-# Nested dictionaries for game properties
+# File containing all player property
 import numpy as np
 import math as m
 import tabulate as tab
@@ -12,10 +12,10 @@ import map as mp
 class Player:
     """Contains player name, inventory and position
     """
-    def __init__(self, name, inventory):
+    def __init__(self, name):
         # initiates with name and inventory
         self.name = name
-        self.inventory = inventory
+        self.inventory = []
         self.x = 1  # value for start tile
         self.y = 1  # value for start tile
 

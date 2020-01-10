@@ -1,9 +1,12 @@
 # Josh Lim
 # Comp Sci 30 P4
 # 01/08/2020
-# File containing all the actions in game
+# File containing all the actions property
 import player
+import map as mp
 
+
+player = player.Player("joe")
 
 # Code adapted from
 # Let's talk data: How to Write a Text Adventure in Python Part 3
@@ -37,4 +40,4 @@ moveLeft = Action(method = player.moveLeft,
 
 viewInv = Action(method = player.viewInventory,
                  name = "view inventory",
-                 hotkey = ["i", "inv", "inventory"])
+                 hotKey = ["i", "inv", "inventory"],)
