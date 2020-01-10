@@ -22,6 +22,17 @@ print(map.chestTile.openChest(player))
 
 print(player.inventory)
 
+print(map.bookcaseTile.search())
+print(map.bookcaseTile.readBook1())
+print(map.bookcaseTile.readBook2())
+print(map.bookcaseTile.readBook3())
+print(map.bookcaseTile.readBook4())
+print(map.bookcaseTile.readBook5(player))
+print(map.bookcaseTile.readBook6())
+print(map.bookcaseTile.readBook7(player))
+
+print(player.inventory)
+
 # startTile = mp.startTile("start", "fill in desc", 1, 1)
 # exitTile = mp.endTile("exit door", "fill in desc", 3, 0)
 # winTile = mp.winTile("locked door", "fill in desc", 3, 2)

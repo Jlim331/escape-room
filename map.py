@@ -116,7 +116,8 @@ class CabinetTile(MapTile):
 cabinetTile = CabinetTile("key")
 
 class ChestTile(MapTile):
-    def __init__(self):
+    def __init__(self, item):
+        self.item = item
         super().__init__(name = "chest",
                          desc = "fill in desc",
                          event = """
@@ -128,7 +129,7 @@ class ChestTile(MapTile):
 
     def openChest(self, player):
         if "chest key" in player.inventory:
-            player.inventory.append("key")
+            player.inventory.append(self.item)
             player.inventory.remove("chest key")
             return """
             You opened the chest and found a key
@@ -138,16 +139,17 @@ class ChestTile(MapTile):
             You need a key to open this chest.
             """
 
-chestTile = ChestTile()
+chestTile = ChestTile("key")
 
 class BookcaseTile(MapTile):
-    def __init__(self):
+    def __init__(self, item):
+        self.item = item
         self.searchFlag = False
         super().__init__(name = "bookcase",
                          desc = "fill in desc",
                          event = """
-                         You see a bookcase filled with a bunch of red books,
-                         textbook and magazine
+                         You see a bookcase filled with a variety of books with the
+                         most common color being red
                          """,
                          x = 2,
                          y = 0)
@@ -156,6 +158,100 @@ class BookcaseTile(MapTile):
         self.searchFlag = True
         return self.event
 
+    def readBook1(self):
+        if self.searchFlag == True:
+            return """
+            Minecraft: Combat Handbook: Ultimate Collector's Edition by Erik Aronsen
+                The Masterpiece from Amazon #1 Bestselling Minecraft Authors Creative Community.
+                This time we're delighted to present A Stunning Master Work - Minecraft Combat
+                Handbook:Collector's Edition Our goal is to show you the most Incredible
+                Possibilities and unlockyour Creative Abilities to Master Minecraft World
+                together with us!
+            """
+        else:
+            return None
+
+    def readBook2(self):
+        if self.searchFlag == True:
+            return """
+            THE ESSENTIAL CALVIN AND HOBBES by Bill Watterson
+                Beginning with the day Hobbes sprang into Calvin's tuna fish trap, the first
+                two Calvin and Hobbes collections, Calvin and Hobbes and Something Under The Bed
+                Is Drooling, are brought together in this treasury. Including black-and-white
+                dailies and color Sundays, The Essential Calvin and Hobbes also features an
+                original full-color 16-page story.
+            """
+        else:
+            return None
+
+    def readBook3(self):
+        if self.searchFlag == True:
+            return """
+            Diary of a Wimpy Kid Book 1 by Jeff Kinney
+                It’s a new school year, and Greg Heffley finds himself thrust into middle school,
+                where undersized weaklings share the hallways with kids who are taller, meaner,
+                and already shaving. The hazards of growing up before you’re ready are uniquely
+                revealed through words and drawings as Greg records them in his diary.
+            """
+        else:
+            return None
+
+    def readBook4(self):
+        if self.searchFlag == True:
+            return """
+            Goosebumps: Welcome to Camp Nightmare by R L Stine
+                The food isn't great. The counselors are strange. And the camp director seems
+                demented. Okay, so Billy can handle all that. But then his fellow campers start
+                to disappear. What's going on? Why won't his parents answer his letters? What's
+                lurking out there after dark? Camp Nightmoon is turning into Camp Nightmare! And
+                Billy might be next...
+            """
+        else:
+            return None
+
+    def readBook5(self, player):
+        if self.searchFlag == True:
+            player.inventory.append(self.item[0])
+            return """
+            Little Red Riding Hood by Gaby Goldsack
+                he classic tale of Little Red Riding Hood comes to life in this vibrant retelling
+                perfect for beginning readers.  Designed to encourage vocabulary development and
+                help children read aloud, this story uses larger font types and vivid, contemporary
+                illustrations to help early learning skills. It's a perfect addition to any children's
+                library.
+
+                As you opened the book a key fell out!
+            """
+        else:
+            return None
+
+    def readBook6(self):
+        if self.searchFlag == True:
+            return """
+            Captain Underpants and the Tyrannical Retaliation of the Turbo Toilet 2000 by Dav Pilkey
+                Just when you thought it was safe to flush . . .
+
+                The Turbo Toilet 2000 strikes back! The carnivorous commode known for devouring everything
+                in its path has built up a real appetite . . . for REVENGE! Join Captain Underpants for another
+                epic showdown of Wedgie Power vs. Potty Power as our tighty-whitey-wearing superhero GOES TO ELEVEN!
+            """
+        else:
+            return None
+
+    def readBook7(self, player):
+        if self.searchFlag == True:
+            player.inventory.append(self.item[1])
+            return """
+            The 39 Clues Book One: The Maze of Bones by Rick Riordan
+                Minutes before she died Grace Cahill changed her will, leaving her decendants an impossible decision:
+                "You have a choice - one million dollars or a clue."
+
+                You found a 39 clue card!
+            """
+        else:
+            return None
+
+bookcaseTile = BookcaseTile(["key", "Card # 6: Thomas Jefferson"])
 
 class PaintingTile(MapTile):
     def __init__(self):
