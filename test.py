@@ -3,61 +3,33 @@
 # 01/09/2020
 # File to test code
 import map
-import player as play
+from player import Player
 import action
 
-player = play.Player("Joe")
 
-print(map.cabinetTile.search())
-print(map.cabinetTile.searchClothes())
-print(map.cabinetTile.lookMirror())
-print(map.cabinetTile.openDrawer(player))
+def intro():
+    print("Welceom to escape room")
+    name = input("Name: ").title
+    return name
 
-print(player.inventory)
+player = Player(intro())
 
-player.inventory.append("chest key")
+escapeRoom = map.map
+arrayMaxX = map.findMax(escapeRoom) + 1  # finds max x
+arrayMaxY = map.findMax(escapeRoom)  # finds max y
 
-print(map.chestTile.search())
-print(map.chestTile.openChest(player))
+def play():
+    while not player.win or not player.giveUp:
+        room = map.tileExist(player.x, player.y)
+        print(room.name)
+        print(room.desc)
+        availableActions = room.availableActions()
+        for action in availableActions:
+            print("{}: {} \t".format(action.hotKey[0].title(), action.name.capitalize()), end = "")
+        userIn = input("\nAction: ")
+        for action in availableActions:
+            if userIn in action.hotKey:
+                print("i")
+                player.doAction(action)
 
-print(player.inventory)
-
-print(map.bookcaseTile.search())
-print(map.bookcaseTile.readBook1())
-print(map.bookcaseTile.readBook2())
-print(map.bookcaseTile.readBook3())
-print(map.bookcaseTile.readBook4())
-print(map.bookcaseTile.readBook5(player))
-print(map.bookcaseTile.readBook6())
-print(map.bookcaseTile.readBook7(player))
-
-print(player.inventory)
-
-# startTile = mp.startTile("start", "fill in desc", 1, 1)
-# exitTile = mp.endTile("exit door", "fill in desc", 3, 0)
-# winTile = mp.winTile("locked door", "fill in desc", 3, 2)
-# cabinetTile = mp.MapTile("cabinet", "fill in desc", 0, 0)
-# chestTile = mp.MapTile("chest", "fill in desc", 1, 0)
-# bookcaseTile = mp.MapTile("bookcase", "fill in desc", 2, 0)
-# paintingTile = mp.MapTile("painting", "fill in desc", 0, 1)
-# deskTile = mp.MapTile("desk", "fill in desc", 2, 1)
-# emptyTile = mp.MapTile(" ", "fill in desc", 3, 1)
-# shelveTile = mp.MapTile("shelve", "fill in desc", 0, 2)
-# tableTile = mp.MapTile("table", "fill in desc", 1, 2)
-# chairTile = mp.MapTile("chair", "fill in desc", 2, 2)
-
-# Creates array for the game
-# map =[
-#     [cabinetTile, chestTile, bookcaseTile, exitTile],
-#     [paintingTile, startTile, deskTile, emptyTile],
-#     [shelveTile, tableTile, chairTile, winTile]
-# ]
-
-# class MapTile:
-#     """Map Class to create tiles for the game"""
-#     def __init__(self, name, desc, event, x, y):
-#         self.name = name
-#         self.desc = desc
-#         self.event = event
-#         self.x = x
-#         self.y = y
+play()

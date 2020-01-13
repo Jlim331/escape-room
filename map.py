@@ -6,6 +6,7 @@ import numpy as np
 import math as m
 import tabulate as tab
 import format as form
+import action as act
 global map  # globalize map to be used in other files
 
 
@@ -18,8 +19,28 @@ class MapTile:
         self.x = x
         self.y = y
 
+    def __str__(self):
+        return self.name
+
     def search(self):
         return self.event
+
+    def adjacentMoves(self):
+        moves = []
+        if tileExist(self.x, self.y - 1):
+            moves.append(act.MoveUp)
+        if tileExist(self.x, self.y + 1):
+            moves.append(act.MoveDown)
+        if tileExist(self.x + 1, self.y):
+            moves.append(act.MoveRight)
+        if tileExist(self.x - 1, self.y):
+            moves.append(act.MoveLeft)
+        return moves
+
+    def availableActions(self):
+        moves = self.adjacentMoves()
+        moves.append(act.ViewInv)
+        return moves
 
     def getName(self):
         return self.name
@@ -34,6 +55,7 @@ class MapTile:
 class WinTile(MapTile):
     """Class to create the winning tile"""
     def __init__(self):
+        self.searchFlag = False
         super().__init__(name = "locked door",
                          desc = "fill in desc",
                          event = """
@@ -41,6 +63,27 @@ class WinTile(MapTile):
                          """,
                          x = 3,
                          y = 2)
+
+    def search(self):
+        self.searchFlag = True
+        return self.event
+
+    def openDoor(self, player):
+        if self.searchFlag == True:
+            if player.inventory.count("key") == 3:
+                player.win = True
+                return """
+                Congratulation on finding three keys
+                You win!
+                """
+            else:
+                return """
+                You need to collect 3 keys to unlock this door
+                """
+        else:
+            return None
+
+winTile = WinTile()
 
 
 class StartTile(MapTile):
@@ -51,15 +94,18 @@ class StartTile(MapTile):
                                      Welcome to the escape room!!!
                           The games objective is to find all three keys in the
                              room before turn 50 or else you lose the game.
+                                        What would you like to do?
                          """,
                          event = "Nothing to see here :)",
                          x = 1,
                          y = 1)
 
+startTile = StartTile()
 
 class EndTile(MapTile):
     """Class to create the "giving up" tile"""
     def __init__(self):
+        self.searchFlag = False
         super().__init__(name = "exit",
                          desc = "fill in desc",
                          event = """
@@ -69,6 +115,18 @@ class EndTile(MapTile):
                          x = 0,
                          y = 3)
 
+    def search(self):
+        self.searchFlag = True
+        return self.event
+
+    def openDoor(self, player):
+        if self.searchFlag == True:
+            self.giveUp = False
+            return """
+            Thank you for playing, you lose
+            """
+
+endTile = EndTile()
 
 class CabinetTile(MapTile):
     def __init__(self, item):
@@ -257,57 +315,82 @@ class PaintingTile(MapTile):
     def __init__(self):
         super().__init__(name = "painting",
                          desc = "fill in desc",
+                         event = """
+                         You see a painting
+                         """,
                          x = 0,
                          y = 1)
 
+paintingTile = PaintingTile()
 
 class DeskTile(MapTile):
     def __init__(self):
         super().__init__(name = "desk",
                         desc = "fill in desc",
+                        event = """
+                        You see a desk
+                        """,
                         x = 2,
                         y = 1)
 
+deskTile = DeskTile()
 
 class EmptyTile(MapTile):
     def __init__(self):
         super().__init__(name = "",
                          desc = "fill in desc",
+                         event = """
+                         There is nothing to see here
+                         """,
                          x = 3,
                          y = 1)
 
+emptyTile = EmptyTile()
 
 class ShelveTile(MapTile):
-    def __init(self):
+    def __init__(self):
         super().__init__(name = "shelve",
                          desc = "fill in desc",
+                         event = """
+                         You see a shelve
+                         """,
                          x = 0,
                          y = 2)
 
+shelveTile = ShelveTile()
 
 class TableTile(MapTile):
     def __init__(self):
         super().__init__(name = "table",
                         desc = "fill in desc",
+                        event = """
+                        You see a table
+                        """,
                         x = 1,
                         y = 2)
 
+tableTile = TableTile()
 
 class ChairTile(MapTile):
     def __init__(self):
         super().__init__(name = "chair",
                          desc = "fill in desc",
+                         event = """
+                         You see a chair
+                         """,
                          x = 2,
                          y= 2)
 
-# map =[
-#     [CabinetTile(), ChestTile(), BookcaseTile(), EndTile()],
-#     [PaintingTile(), StartTile(), DeskTile(), EmptyTile()],
-#     [ShelveTile(), TableTile(), ChairTile(), WinTile()]
-# ]
+chairTile = ChairTile()
+
+map =[
+    [cabinetTile, chestTile, bookcaseTile, endTile],
+    [paintingTile, startTile, deskTile, emptyTile],
+    [shelveTile, tableTile, chairTile, winTile]
+]
 
 
-def tileAt(x, y):
+def tileAt(y, x):
     if x < 0 or y < 0:
         return None
     try:
@@ -316,16 +399,16 @@ def tileAt(x, y):
         return None
 
 
-def tileExists(x, y):
-    return map.get((x, y))
-
+def tileExist(x, y):
+    tile = map[y][x]
+    return tile
 
 def highlighPos(y, x, array):
     """Function that takes an x and y cord of an array and highlights that
     item"""
-    highlightTile = "~" + array[y][x] + "~"
+    highlightTile = "~" + array[y][x].name + "~"
     # replaces old tile with new tiles
-    highlighted = np.where(array == array[y][x], highlightTile, array)
+    highlighted = np.where(array == array[y][x], "You are here", array)
     # prints out the table but with the highlighted tile higlighted
     print(tab.tabulate(highlighted, tablefmt="grid"))
 

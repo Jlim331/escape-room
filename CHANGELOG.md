@@ -64,13 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.5] - 2020-01-??
 ### Added
- -
+ - Unique Tile option
 
 ### Changed
- -
-
-### Removed
- -
-
-### Fixed
- -
+ - Changed the game to work with class based tile

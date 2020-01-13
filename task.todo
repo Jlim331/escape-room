@@ -5,6 +5,7 @@ Task:
     ✔ create menu.py @done(2019-11-07 13:50) @project(Task)
     ✔ create locations.py @done(2019-11-07 13:50) @project(Task)
     ✔ Create Classes for objects in game @done(2019-12-09 21:44) @project(Task)
+    ☐ Figure out why highlight player isn't working
     ☐ Create Title Screen
     ☐ Create Help Screen
     ☐ Add unique option to Cabinet

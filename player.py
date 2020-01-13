@@ -18,6 +18,8 @@ class Player:
         self.inventory = []
         self.x = 1  # value for start tile
         self.y = 1  # value for start tile
+        self.win = False
+        self.giveUp = False
 
     def viewInventory(self):
         """function for viewing the inventory of the player"""
@@ -69,6 +71,6 @@ class Player:
         return moves
 
     def doAction(self, action, **kwargs):
-        actionMethod = getattr(self, action.method)
+        actionMethod = getattr(self, action.method.__name__)
         if actionMethod:
             actionMethod(**kwargs)

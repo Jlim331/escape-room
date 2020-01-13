@@ -11,7 +11,7 @@ import os
 def titleScreenSelctions():
     option = input("").lower()
     if option in ["play", "p"]:
-        play():
+        play()
     elif option in ["help", "h"]:
         helpMenu()
     elif option in ["quit", "q"]:
@@ -27,7 +27,7 @@ def helpScreen():
 
 print("Hello what is your name?")  # initiates game with an intro
 name = input("Name: ").title()  # store input
-player = player.Player(name, ["Test"])  # creates player class
+player = player.Player(name)  # creates player class
 
 flag = True  # flag to keep while loop going
 
