@@ -61,6 +61,7 @@ class WinTile(MapTile):
     """Class to create the winning tile"""
     def __init__(self):
         self.searchFlag = False
+        self.player = None
         super().__init__(name = "locked door",
                          desc = "fill in desc",
                          event = """
@@ -74,6 +75,7 @@ class WinTile(MapTile):
         return self.event
 
     def openDoor(self, player):
+        self.player = player
         if self.searchFlag == True:
             if player.inventory.count("key") == 3:
                 player.win = True
@@ -87,6 +89,13 @@ class WinTile(MapTile):
                 """
         else:
             return None
+
+    def availableActions(self, maxX, maxY):
+        moves = self.defaultActions(maxX, maxY)
+        moves.append(act.WinTileSearch())
+        if self.searchFlag == True:
+            moves.append(act.WinTileOpenDoor(self.player))
+        return moves
 
 winTile = WinTile()
 

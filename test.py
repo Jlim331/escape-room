@@ -5,6 +5,7 @@
 import map
 from player import Player
 from collections import OrderedDict
+import action as act
 
 
 def intro():
@@ -36,6 +37,6 @@ def play():
         userIn = input("\nAction: ")
         for a in availableActions:
             if userIn in a.hotKey:
-                player.doAction(a, room)
+                player.doAction(a, room, **a.kwargs)
 
 play()
