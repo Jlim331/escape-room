@@ -4,11 +4,11 @@
 # File to test code
 import map
 from player import Player
-import action
+from collections import OrderedDict
 
 
 def intro():
-    print("Welceom to escape room")
+    print("Welcome to escape room")
     name = input("Name: ").title
     return name
 
@@ -18,18 +18,24 @@ escapeRoom = map.map
 arrayMaxX = map.findMax(escapeRoom) + 1  # finds max x
 arrayMaxY = map.findMax(escapeRoom)  # finds max y
 
+def getAvailaibleAction(room, player):
+    actions = OrderedDict()
+
+
 def play():
-    while not player.win or not player.giveUp:
-        room = map.tileExist(player.x, player.y)
+    print(arrayMaxX)
+    print(arrayMaxY)
+    while not player.win and not player.giveUp:
+        room = map.tileAt(player.y, player.x)
+        print("x: {}\ty: {}\tx: {}\ty: {}\t".format(room.x, room.y, player.x, player.y))
         print(room.name)
         print(room.desc)
-        availableActions = room.availableActions()
-        for action in availableActions:
-            print("{}: {} \t".format(action.hotKey[0].title(), action.name.capitalize()), end = "")
+        availableActions = room.availableActions(arrayMaxX, arrayMaxY)
+        for a in availableActions:
+            print("{}: {}".format(a.hotKey[0], a.name))
         userIn = input("\nAction: ")
-        for action in availableActions:
-            if userIn in action.hotKey:
-                print("i")
-                player.doAction(action)
+        for a in availableActions:
+            if userIn in a.hotKey:
+                player.doAction(a, room)
 
 play()

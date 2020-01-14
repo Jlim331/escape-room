@@ -5,7 +5,13 @@ Task:
     ✔ create menu.py @done(2019-11-07 13:50) @project(Task)
     ✔ create locations.py @done(2019-11-07 13:50) @project(Task)
     ✔ Create Classes for objects in game @done(2019-12-09 21:44) @project(Task)
+
+Bugs:
     ☐ Figure out why highlight player isn't working
+    ✔ Fix Menu option @done(2020-01-13 20:59) @project(Bugs)
+    ✔ Fix Movement system @done(2020-01-13 20:59) @project(Bugs)
+
+Timeline:
     ☐ Create Title Screen
     ☐ Create Help Screen
     ☐ Add unique option to Cabinet
@@ -18,12 +24,14 @@ Task:
     ☐ Add unique option to Table
     ☐ Add unique option to Sofa
     ☐ Add unique option to Locked Door
-    ☐ Create a way to show each unique option at the certain tile
-    ☐ Create a way to move
-    ☐ Create a way to generate map
+    ☐ Add description for each tile
+    ☐ Add event for each tile
+    ✔ Create a way to show each unique option at the certain tile @done(2020-01-13 20:57) @project(Timeline)
+    ✔ Create a way to move @done(2020-01-13 20:57) @project(Timeline)
+    ✔ Create a way to generate map @done(2020-01-13 16:11) @project(Timeline)
     ☐ Create Items
-    ☐ Create a turn counter
-    ☐ Implement the winning conditions
+    ☐ Create a turn counter (Optional)
+    ✔ Implement the winning conditions @done(2020-01-13 16:11) @project(Timeline)
 
 Assignments:
     ✔ create continuous play @done(2019-11-07 18:19) @project(Assignments)

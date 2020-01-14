@@ -62,9 +62,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - removed empty files
  - removed old way of generating map
 
-## [0.0.5] - 2020-01-??
+## [0.0.5] - 2020-01-12
 ### Added
  - Unique Tile option
 
 ### Changed
  - Changed the game to work with class based tile
+
+## [0.0.6] - 2020-01-13
+### Added
+ - player doAction to work both with player methods and tile methods
+ - Unique tile option in menu list
+ - Print out for player x andy and tile x and y for debugging
+
+### Changed
+ - tileExist to be based of an array rather than a dictionary
+
+
+### Fixed
+ - Menu system to work with unique tile option
+ - Movement system to display correct option to avoid crashed

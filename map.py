@@ -25,21 +25,26 @@ class MapTile:
     def search(self):
         return self.event
 
-    def adjacentMoves(self):
+    def adjacentMoves(self, maxX, maxY):
         moves = []
-        if tileExist(self.x, self.y - 1):
-            moves.append(act.MoveUp)
-        if tileExist(self.x, self.y + 1):
-            moves.append(act.MoveDown)
-        if tileExist(self.x + 1, self.y):
-            moves.append(act.MoveRight)
-        if tileExist(self.x - 1, self.y):
-            moves.append(act.MoveLeft)
+        if self.y - 1 >= 0:
+            moves.append(act.MoveUp())
+        if self.y + 1 <= maxY:
+            moves.append(act.MoveDown())
+        if self.x + 1 <= maxX:
+            moves.append(act.MoveRight())
+        if self.x - 1 >= 0:
+            moves.append(act.MoveLeft())
         return moves
 
-    def availableActions(self):
-        moves = self.adjacentMoves()
-        moves.append(act.ViewInv)
+    def defaultActions(self, maxX, maxY):
+        moves = self.adjacentMoves(maxX, maxY)
+        moves.append(act.ViewInv())
+        moves.append(act.Quit())
+        return moves
+
+    def availableActions(self, maxX, maxY):
+        moves = self.defaultActions(maxX, maxY)
         return moves
 
     def getName(self):
@@ -100,6 +105,11 @@ class StartTile(MapTile):
                          x = 1,
                          y = 1)
 
+    def availableActions(self, maxX, maxY):
+        moves = self.defaultActions(maxX, maxY)
+        moves.append(act.StartTileSearch())
+        return moves
+
 startTile = StartTile()
 
 class EndTile(MapTile):
@@ -112,8 +122,8 @@ class EndTile(MapTile):
                          You see a door with an exit sign on top, do you wish to open the door?
                          WARNING - THIS WILL BE TREATED AS YOU GIVING UP ON THE GAME - WARNING
                          """,
-                         x = 0,
-                         y = 3)
+                         x = 3,
+                         y = 0)
 
     def search(self):
         self.searchFlag = True
@@ -391,7 +401,7 @@ map =[
 
 
 def tileAt(y, x):
-    if x < 0 or y < 0:
+    if x < 0 and y < 0:
         return None
     try:
         return map [y][x]
@@ -399,9 +409,12 @@ def tileAt(y, x):
         return None
 
 
-def tileExist(x, y):
-    tile = map[y][x]
-    return tile
+def tileExist(x, y, maxX, maxY):
+    if x >= 0 and y >= 0:
+        if x <= maxX and y <= maxY:
+            return True
+    else:
+        return False
 
 def highlighPos(y, x, array):
     """Function that takes an x and y cord of an array and highlights that
@@ -426,7 +439,7 @@ def listGen(dictionary, list):
         list.append(i)
 
 
-def removename(list):
+def removeName(list):
     """Function to remove the key description from a list"""
     for i in list:  # searches for description and removes it
         if i == "description":

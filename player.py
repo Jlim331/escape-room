@@ -6,10 +6,10 @@ import numpy as np
 import math as m
 import tabulate as tab
 import map as mp
-# import action as act
+import action as act
 
 
-class Player:
+class Player():
     """Contains player name, inventory and position
     """
     def __init__(self, name):
@@ -35,6 +35,10 @@ class Player:
         print(f"y: {self.y}")  # prints y value
         print(f"x: {self.x}")  # prints x value
 
+    def quit(self):
+        self.giveUp = True
+        print("Thank you for playing!")
+
     def moveUp(self):
         """functino for moving the player up"""
         self.y -= 1  # moves player up
@@ -51,26 +55,12 @@ class Player:
         """functino for moving the player left"""
         self.x -= 1  # moves player to the left
 
-    def adjacentMoves(self):
-        """Returns all move actions for adjacent tiles."""
-        moves = []
-        if map.tileExists(self.x + 1, self.y):
-            moves.append(actions.moveRight)
-        if map.tileExists(self.x - 1, self.y):
-            moves.append(actions.moveLeft)
-        if map.tileExists(self.x, self.y - 1):
-            moves.append(actions.moveUp)
-        if map.tileExists(self.x, self.y + 1):
-            moves.append(actions.moveDown)
-        return moves
-
-    def availableActions(self):
-        """Returns all of the available actions in this room."""
-        moves = self.adjacentMoves()
-        moves.append(actions.viewInventory)
-        return moves
-
-    def doAction(self, action, **kwargs):
-        actionMethod = getattr(self, action.method.__name__)
-        if actionMethod:
-            actionMethod(**kwargs)
+    def doAction(self, action, tile, **kwargs):
+        try:
+            actionMethod = getattr(self, action.method.__name__)
+            if actionMethod:
+                actionMethod(**kwargs)
+        except:
+            actionMethod1 = getattr(tile, action.method.__name__)
+            if actionMethod1:
+                print(actionMethod1(**kwargs))
