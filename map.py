@@ -89,9 +89,11 @@ class WinTile(MapTile):
                 print("""
                 You need to collect 3 keys to unlock this door
                 """)
+                self.open = False
 
     def openDoor(self):
         self.open = True
+        self.searchFlag = False
 
 
     def availableActions(self, maxX, maxY):
