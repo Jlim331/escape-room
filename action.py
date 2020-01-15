@@ -68,11 +68,10 @@ class WinTileSearch(Action):
 
 
 class WinTileOpenDoor(Action):
-    def __init__(self, player):
+    def __init__(self):
         super().__init__(method = map.WinTile.openDoor,
                          name = "open door",
-                         hotKey = ["o", "open"],
-                         player = player)
+                         hotKey = ["o", "open"])
 
 
 class StartTileSearch(Action):
@@ -89,11 +88,39 @@ class EndTileSearch(Action):
                          hotKey = ["e", "search"])
 
 
+class EndTileOpenDoor(Action):
+    def __init__(self):
+        super().__init__(method = map.EndTile.openDoor,
+                         name = "open",
+                         hotKey = ["o", "open"])
+
+
 class CabinetTileSearch(Action):
     def __init__(self):
         super().__init__(method = map.CabinetTile.search,
                          name = "search",
                          hotKey = ["e", "search"])
+
+
+class CabinetTileSearchClothes(Action):
+    def __init__(self):
+        super().__init__(method = map.CabinetTile.searchClothes,
+                         name = "search clothes",
+                         hotKey = ["z", "search clothes"])
+
+
+class CabinetTileLookMirror(Action):
+    def __init__(self):
+        super().__init__(method = map.CabinetTile.lookMirror,
+                         name = "look at mirror",
+                         hotKey = ["x", "look mirror", "look into mirror"])
+
+
+class CabinetTileOpenDrawer(Action):
+    def __init__(self):
+        super().__init__(method = map.CabinetTile.openDrawer,
+                         name = "open drawer",
+                         hotKey = ["c", "open drawer"])
 
 
 class ChestTileSearch(Action):
@@ -103,11 +130,67 @@ class ChestTileSearch(Action):
                          hotKey = ["e", "search"])
 
 
+class ChestTileOpenChest(Action):
+    def __init__(self):
+        super().__init__(method = map.ChestTile.openChest,
+                         name = "open Chest",
+                         hotKey = ["o", "open chest"])
+
+
 class BookcaseTileSearch(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.search,
                          name = "search",
                          hotKey = ["e", "search"])
+
+
+class BookcaseTileRead1(Action):
+    def __init__(self):
+        super().__init__(method = map.BookcaseTile.readBook1,
+                         name = "Minecraft: Combat Handbook: Ultimate Collector's Edition by Erik Aronsen",
+                         hotKey = ["1", "read one", "read 1"])
+
+
+class BookcaseTileRead2(Action):
+    def __init__(self):
+        super().__init__(method = map.BookcaseTile.readBook2,
+                         name = "THE ESSENTIAL CALVIN AND HOBBES by Bill Watterson",
+                         hotKey = ["2", "read two", "read 2"])
+
+
+class BookcaseTileRead3(Action):
+    def __init__(self):
+        super().__init__(method = map.BookcaseTile.readBook3,
+                         name = "Diary of a Wimpy Kid Book 1 by Jeff Kinney",
+                         hotKey = ["3", "read three", "read 3"])
+
+
+class BookcaseTileRead4(Action):
+    def __init__(self):
+        super().__init__(method = map.BookcaseTile.readBook4,
+                         name = "Goosebumps: Welcome to Camp Nightmare by R L Stine",
+                         hotKey = ["4", "read four", "read 4"])
+
+
+class BookcaseTileRead5(Action):
+    def __init__(self):
+        super().__init__(method = map.BookcaseTile.readBook5,
+                         name = "Little Red Riding Hood by Gaby Goldsack",
+                         hotKey = ["5", "read five", "read 5"])
+
+
+class BookcaseTileRead6(Action):
+    def __init__(self):
+        super().__init__(method = map.BookcaseTile.readBook6,
+                         name = "Captain Underpants and the Tyrannical Retaliation of the Turbo Toilet 2000 by Dav Pilkey",
+                         hotKey = ["6", "read six", "read 6"])
+
+
+class BookcaseTileRead7(Action):
+    def __init__(self):
+        super().__init__(method = map.BookcaseTile.readBook7,
+                         name = "The 39 Clues Book One: The Maze of Bones by Rick Riordan",
+                         hotKey = ["7", "read seven", "read 7"])
 
 
 class PaintingTileSearch(Action):
@@ -150,3 +233,9 @@ class ChairTileSearch(Action):
         super().__init__(method = map.ChairTile.search,
                          name = "search",
                          hotKey = ["e", "search"])
+
+class ChairTileSit(Action):
+    def __init__(self):
+        super().__init__(method = map.ChairTile.sit,
+                         name = "sit",
+                         hotKey = ["z", "sit"])

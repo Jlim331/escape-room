@@ -82,3 +82,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
  - Menu system to work with unique tile option
  - Movement system to display correct option to avoid crashed
+
+## [0.0.7] - 2020-01-15
+### Added
+ - Unique tile options
+
+### Changed
+ - Changed the old way on modifying player class
+
+### Fixed
+ - Found an alternative to passing player class through kwargs
+ - rename openDrawer to openDrawerFlag to fix openDrawer() not running

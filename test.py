@@ -6,6 +6,7 @@ import map
 from player import Player
 from collections import OrderedDict
 import action as act
+import os
 
 
 def intro():
@@ -24,19 +25,23 @@ def getAvailaibleAction(room, player):
 
 
 def play():
-    print(arrayMaxX)
-    print(arrayMaxY)
     while not player.win and not player.giveUp:
         room = map.tileAt(player.y, player.x)
-        print("x: {}\ty: {}\tx: {}\ty: {}\t".format(room.x, room.y, player.x, player.y))
-        print(room.name)
-        print(room.desc)
-        availableActions = room.availableActions(arrayMaxX, arrayMaxY)
-        for a in availableActions:
-            print("{}: {}".format(a.hotKey[0], a.name))
-        userIn = input("\nAction: ")
-        for a in availableActions:
-            if userIn in a.hotKey:
-                player.doAction(a, room, **a.kwargs)
+        room.modifyPlayer(player)
+        if player.win == True:
+            break
+        elif player.giveUp == True:
+            break
+        else:
+            # print("x: {}\ty: {}\tx: {}\ty: {}\t".format(room.x, room.y, player.x, player.y))
+            print(room.name.title())
+            print(room.desc.title())
+            availableActions = room.availableActions(arrayMaxX, arrayMaxY)
+            for a in availableActions:
+                print("{}: {} \t ".format(a.hotKey[0].title(), a.name.title()), end = "")
+            userIn = input("\nAction: ")
+            for a in availableActions:
+                if userIn in a.hotKey:
+                    player.doAction(a, room, **a.kwargs)
 
 play()

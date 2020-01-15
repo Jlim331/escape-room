@@ -63,4 +63,4 @@ class Player():
         except:
             actionMethod1 = getattr(tile, action.method.__name__)
             if actionMethod1:
-                print(actionMethod1(**kwargs))
+                actionMethod1(**kwargs)

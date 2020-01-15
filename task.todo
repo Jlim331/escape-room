@@ -5,31 +5,38 @@ Task:
     ✔ create menu.py @done(2019-11-07 13:50) @project(Task)
     ✔ create locations.py @done(2019-11-07 13:50) @project(Task)
     ✔ Create Classes for objects in game @done(2019-12-09 21:44) @project(Task)
+    ☐ remove unnecessary code in map.py
+    ✔ change all return string for text ouput to print in map.py @done(2020-01-14 22:52) @project(Task)
+    ✔ make a way for certain optios to disappear after being executed (Found a different way) @done(2020-01-14 22:52) @project(Task)
+    ☐ find a way to add a 39 clue card to player inventory
+    ☐ add more unique options
 
 Bugs:
-    ☐ Figure out why highlight player isn't working
+    ☐ Figure out why highlight player isn't working (not a game breaker, but a nice feature)
     ✔ Fix Menu option @done(2020-01-13 20:59) @project(Bugs)
     ✔ Fix Movement system @done(2020-01-13 20:59) @project(Bugs)
+    ✔ Find a way to pass player class through kwargs (Found a bypass) @done(2020-01-14 17:24) @project(Bugs)
+    ✔ Fix why openDrawer() wont work for cabinetTile @done(2020-01-14 18:15) @project(Bugs)
 
 Timeline:
-    ☐ Create Title Screen
-    ☐ Create Help Screen
-    ☐ Add unique option to Cabinet
-    ☐ Add unique option to Chest
-    ☐ Add unique option to Bookcase
-    ☐ Add unique option to Exit
-    ☐ Add unique option to Painting
-    ☐ Add unique option to Desk
-    ☐ Add unique option to Shelve
-    ☐ Add unique option to Table
-    ☐ Add unique option to Sofa
-    ☐ Add unique option to Locked Door
-    ☐ Add description for each tile
-    ☐ Add event for each tile
+    ☐ Create Title Screen (optional)
+    ☐ Create Help Screen (optional)
+    ✔ Add unique option to Cabinet @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Chest @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Bookcase @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Exit @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Painting @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Desk @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Shelve @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Table @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Sofa @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add unique option to Locked Door @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add description for each tile @done(2020-01-14 22:52) @project(Timeline)
+    ✔ Add event for each tile @done(2020-01-14 22:52) @project(Timeline)
     ✔ Create a way to show each unique option at the certain tile @done(2020-01-13 20:57) @project(Timeline)
     ✔ Create a way to move @done(2020-01-13 20:57) @project(Timeline)
     ✔ Create a way to generate map @done(2020-01-13 16:11) @project(Timeline)
-    ☐ Create Items
+    ☐ Create Items (Optional)
     ☐ Create a turn counter (Optional)
     ✔ Implement the winning conditions @done(2020-01-13 16:11) @project(Timeline)
 
