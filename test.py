@@ -27,6 +27,7 @@ def getAvailaibleAction(room, player):
 
 
 def play():
+    turnCounter = 0
     while not player.win and not player.giveUp:
         actionFlag = False
         room = map.tileAt(player.y, player.x)
@@ -36,6 +37,7 @@ def play():
             break
         else:
             print(room.name.title().center(96, "-"))
+            print("Turn " + str(turnCounter))
             print(room.desc)
             availableActions = room.availableActions(arrayMaxX, arrayMaxY)
             for a in availableActions:
@@ -46,6 +48,7 @@ def play():
             os.system('cls')
             for a in availableActions:
                 if userIn in a.hotKey:
+                    turnCounter = turnCounter + 1
                     action = a
                     actionFlag = True
             if not actionFlag:
