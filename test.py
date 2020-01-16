@@ -4,10 +4,8 @@
 # File to test code
 import map
 from player import Player
-from collections import OrderedDict
 import action as act
 import os
-import re
 
 
 def intro():
