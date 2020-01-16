@@ -23,8 +23,8 @@ class Player():
 
     def viewInventory(self):
         """function for viewing the inventory of the player"""
+        print("Your inventory: ")
         for i in self.inventory:
-            print("Your inventory: ")
             print(f"\t{i}")  # prints list
 
     def description(self):
