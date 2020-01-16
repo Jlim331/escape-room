@@ -9,7 +9,10 @@ Task:
     ✔ change all return string for text ouput to print in map.py @done(2020-01-14 22:52) @project(Task)
     ✔ make a way for certain optios to disappear after being executed (Found a different way) @done(2020-01-14 22:52) @project(Task)
     ☐ find a way to add a 39 clue card to player inventory
+    ✔ Fix the text format @done(2020-01-15 20:36) @project(Task)
     ☐ add more unique options
+    ☐ Do some alpha testing
+    ☐ Do some beta testing
 
 Bugs:
     ☐ Figure out why highlight player isn't working (not a game breaker, but a nice feature)

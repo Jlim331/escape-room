@@ -71,8 +71,9 @@ class WinTile(MapTile):
         super().__init__(name = "locked door",
                          desc = "You see a locked door with three locks",
                          event = """
-                         Upon examination it looks like each lock needs a key to open the door,
-                         do you wish to attempt open the door?
+Upon examination it looks like each lock needs a key to open the door.
+
+Do you wish to attempt to open the door?
                          """,
                          x = 3,
                          y = 2)
@@ -82,12 +83,12 @@ class WinTile(MapTile):
             if player.inventory.count("key") == 3:
                 player.win = True
                 print("""
-                Congratulation on finding three keys
-                You win!
+Congratulation on finding three keys
+You win!
                 """)
             else:
                 print("""
-                You need to collect 3 keys to unlock this door
+You need to collect 3 keys to unlock this door
                 """)
                 self.open = False
 
@@ -111,10 +112,10 @@ class StartTile(MapTile):
     def __init__(self):
         super().__init__(name = "start",
                          desc = """
-                                     Welcome to the escape room!!!
-                          The games objective is to find all three keys in the
-                             room before turn 50 or else you lose the game.
-                                        What would you like to do?
+Welcome to the escape room!!!
+The games objective is to find all three keys in the
+
+What would you like to do?
                          """,
                          event = "Nothing to see here :)",
                          x = 1,
@@ -135,8 +136,8 @@ class EndTile(MapTile):
         super().__init__(name = "exit",
                          desc = "You see a bright exit sign on top of a door",
                          event = """
-                         You see a door with an exit sign on top, do you wish to open the door?
-                         WARNING - THIS WILL BE TREATED AS YOU GIVING UP ON THE GAME - WARNING
+ You see a door with an exit sign on top, do you wish to open the door?
+ WARNING - THIS WILL BE TREATED AS YOU GIVING UP ON THE GAME - WARNING
                          """,
                          x = 3,
                          y = 0)
@@ -147,9 +148,11 @@ class EndTile(MapTile):
             print("""
             You lose
                 """)
+            self.open = False
 
     def openDoor(self):
         self.open = True
+        self.searchFlag = False
 
     def availableActions(self, maxX, maxY):
         moves = self.defaultActions(maxX, maxY)
@@ -169,8 +172,10 @@ class CabinetTile(MapTile):
         super().__init__(name = "cabinet",
                          desc = "You see a brown cabinet with two doors open",
                          event = """
-                         You see a generic cabinet with some clothes hanged,
-                         a mirror and a drawer. What would you like to do?
+ You see a generic cabinet with some clothes hanged,
+ a mirror and a drawer.
+
+ What would you like to do?
                          """,
                          x = 0,
                          y = 0)
@@ -179,28 +184,34 @@ class CabinetTile(MapTile):
         if self.openDrawerFlag:
             if self.keyFlag:
                 print("""
-                you opened the drawer and see nothing
+you opened the drawer and see nothing
                 """)
+                self.openDrawerFlag = False
             else:
                 print("""
-                You opened the drawer and found a key!
+You opened the drawer and found a key!
+
+You picked up the key.
                 """)
                 player.inventory.append("key")
                 self.keyFlag = True
                 self.openDrawerFlag = False
 
     def searchClothes(self):
+        self.searchFlag = False
         print("""
-        You searched through the clothes and noticed some Balenciaga,
-        Supreme, Gucci, Louis Voutton, but didn't find any keys at all.
+You searched through the clothes and noticed some Balenciaga,
+Supreme, Gucci, Louis Voutton, but didn't find any keys at all.
         """)
 
     def lookMirror(self):
+        self.searchFlag = False
         print("""
-        You look in the mirror and notice a reflection that resembles yourself
+You look in the mirror and notice a reflection that resembles yourself
         """)
 
     def openDrawer(self):
+        self.searchFlag = False
         self.openDrawerFlag = True
 
     def availableActions(self, maxX, maxY):
@@ -221,8 +232,8 @@ class ChestTile(MapTile):
         super().__init__(name = "chest",
                          desc = "you see a chest in the corner, covered with dust",
                          event = """
-                         You see a chest
-                         What would you like to do?
+ You see a chest
+ What would you like to do?
                          """,
                          x = 1,
                          y = 0)
@@ -231,12 +242,15 @@ class ChestTile(MapTile):
         if self.openChestFlag:
             if self.openFlag:
                 print("""
-                You opened the chest and see nothing
+You opened the chest and see nothing
                 """)
+                self.openFlag = False
             else:
                 if "chest key" in player.inventory:
                     print("""
-                    You opened the chest and found a key!
+You opened the chest and found a key!
+
+You picked up the key.
                     """)
                     player.inventory.append("key")
                     player.inventory.remove("chest key")
@@ -244,10 +258,12 @@ class ChestTile(MapTile):
                     self.openFlag = True
                 else:
                     print("""
-                    You need to find the chest key to open this chest
+You need to find the chest key to open this chest
                     """)
+                    self.openChestFlag = False
 
     def openChest(self):
+        self.searchFlag = False
         self.openChestFlag = True
 
     def availableActions(self, maxX, maxY):
@@ -267,8 +283,10 @@ class BookcaseTile(MapTile):
         super().__init__(name = "bookcase",
                          desc = "you see a bookcase standing tall and strong",
                          event = """
-                         You see a bookcase filled with a variety of books with the
-                         most common color being red
+ You see a bookcase filled with a variety of books with the
+ most common color being red
+
+ What would you like to do?
                          """,
                          x = 2,
                          y = 0)
@@ -276,81 +294,93 @@ class BookcaseTile(MapTile):
     def modifyPlayer(self, player):
         if self.openBookFlag:
             if self.keyFlag:
-                None
+                self.openBookFlag = False
             else:
                 print("""
-                As you opened the book a key fell out!
+As you opened the book a key fell out!
                 """)
                 player.inventory.append("key")
                 self.openBookFlag = False
                 self.keyFlag = True
 
     def readBook1(self):
+        self.searchFlag = False
         print("""
-        Minecraft: Combat Handbook: Ultimate Collector's Edition by Erik Aronsen
-            The Masterpiece from Amazon #1 Bestselling Minecraft Authors Creative Community.
-            This time we're delighted to present A Stunning Master Work - Minecraft Combat
-            Handbook:Collector's Edition Our goal is to show you the most Incredible
-            Possibilities and unlockyour Creative Abilities to Master Minecraft World
-            together with us!
+Minecraft: Combat Handbook: Ultimate Collector's Edition by Erik Aronsen
+    The Masterpiece from Amazon #1 Bestselling Minecraft Authors Creative
+    Community.This time we're delighted to present A Stunning Master Work
+    - Minecraft Combat Handbook:Collector's Edition Our goal is to show you
+    the most Incredible Possibilities and unlockyour Creative Abilities to
+    Master Minecraft World together with us!
             """)
 
     def readBook2(self):
+        self.searchFlag = False
         print("""
-        THE ESSENTIAL CALVIN AND HOBBES by Bill Watterson
-            Beginning with the day Hobbes sprang into Calvin's tuna fish trap, the first
-            two Calvin and Hobbes collections, Calvin and Hobbes and Something Under The Bed
-            Is Drooling, are brought together in this treasury. Including black-and-white
-            dailies and color Sundays, The Essential Calvin and Hobbes also features an
-            original full-color 16-page story.
+THE ESSENTIAL CALVIN AND HOBBES by Bill Watterson
+    Beginning with the day Hobbes sprang into Calvin's tuna fish trap, the
+    first two Calvin and Hobbes collections, Calvin and Hobbes and Something
+    Under The Bed Is Drooling, are brought together in this treasury.
+    Including black-and-white dailies and color Sundays, The Essential Calvin
+    and Hobbes also features an original full-color 16-page story.
             """)
 
     def readBook3(self):
+        self.searchFlag = False
         print("""
-        Diary of a Wimpy Kid Book 1 by Jeff Kinney
-            It’s a new school year, and Greg Heffley finds himself thrust into middle school,
-            where undersized weaklings share the hallways with kids who are taller, meaner,
-            and already shaving. The hazards of growing up before you’re ready are uniquely
-            revealed through words and drawings as Greg records them in his diary.
+Diary of a Wimpy Kid Book 1 by Jeff Kinney
+    It’s a new school year, and Greg Heffley finds himself thrust into middle
+    school, where undersized weaklings share the hallways with kids who are
+    taller, meaner, and already shaving. The hazards of growing up before
+    you’re ready are uniquely revealed through words and drawings as Greg
+    records them in his diary.
             """)
 
     def readBook4(self):
-            print("""
-            Goosebumps: Welcome to Camp Nightmare by R L Stine
-                The food isn't great. The counselors are strange. And the camp director seems
-                demented. Okay, so Billy can handle all that. But then his fellow campers start
-                to disappear. What's going on? Why won't his parents answer his letters? What's
-                lurking out there after dark? Camp Nightmoon is turning into Camp Nightmare! And
-                Billy might be next...
+        self.searchFlag = False
+        print("""
+Goosebumps: Welcome to Camp Nightmare by R L Stine
+    The food isn't great. The counselors are strange. And the camp director
+    seems demented. Okay, so Billy can handle all that. But then his fellow
+    campers start to disappear. What's going on? Why won't his parents answer
+    his letters? What's lurking out there after dark? Camp Nightmoon is
+    turning into Camp Nightmare! And Billy might be next...
                 """)
 
     def readBook5(self):
+        self.searchFlag = False
         self.openBookFlag = True
         print("""
-        Little Red Riding Hood by Gaby Goldsack
-            he classic tale of Little Red Riding Hood comes to life in this vibrant retelling
-            perfect for beginning readers.  Designed to encourage vocabulary development and
-            help children read aloud, this story uses larger font types and vivid, contemporary
-            illustrations to help early learning skills. It's a perfect addition to any children's
-            library
+Little Red Riding Hood by Gaby Goldsack
+    he classic tale of Little Red Riding Hood comes to life in this vibrant
+    retelling perfect for beginning readers.  Designed to encourage vocabulary
+    development and help children read aloud, this story uses larger font
+    types and vivid, contemporary illustrations to help early learning skills.
+    It's a perfect addition to any children's library
             """)
 
 
     def readBook6(self):
+        self.searchFlag = False
         print("""
-        Captain Underpants and the Tyrannical Retaliation of the Turbo Toilet 2000 by Dav Pilkey
-            Just when you thought it was safe to flush . . .
+Captain Underpants and the Tyrannical Retaliation of the Turbo Toilet 2000
+by Dav Pilkey
+    Just when you thought it was safe to flush . . .
 
-            The Turbo Toilet 2000 strikes back! The carnivorous commode known for devouring everything
-            in its path has built up a real appetite . . . for REVENGE! Join Captain Underpants for another
-            epic showdown of Wedgie Power vs. Potty Power as our tighty-whitey-wearing superhero GOES TO ELEVEN!
+    The Turbo Toilet 2000 strikes back! The carnivorous commode known for
+    devouring everything in its path has built up a real appetite . . . for
+    REVENGE! Join Captain Underpants for another epic showdown of Wedgie Power
+    vs. Potty Power as our tighty-whitey-wearing superhero GOES TO ELEVEN!
             """)
 
     def readBook7(self):
+        self.searchFlag = False
         print("""
-        The 39 Clues Book One: The Maze of Bones by Rick Riordan
-            Minutes before she died Grace Cahill changed her will, leaving her decendants an impossible decision:
-            "You have a choice - one million dollars or a clue."
+The 39 Clues Book One: The Maze of Bones by Rick Riordan
+    Minutes before she died Grace Cahill changed her will, leaving her
+    decendants an impossible decision:
+
+    "You have a choice - one million dollars or a clue."
             """)
 
     def availableActions(self, maxX, maxY):
@@ -367,7 +397,7 @@ class PaintingTile(MapTile):
         super().__init__(name = "painting",
                          desc = "You see a classical painting of doge",
                          event = """
-                         it's just a painting, did you expect something cool to happen?
+it's just a painting, did you expect something cool to happen?
                          """,
                          x = 0,
                          y = 1)
@@ -384,7 +414,7 @@ class DeskTile(MapTile):
         super().__init__(name = "desk",
                         desc = "You see a desk ",
                         event = """
-                        The desk has papers all over it, must be an AP student
+The desk has papers all over it, must be an AP student
                         """,
                         x = 2,
                         y = 1)
@@ -401,7 +431,7 @@ class EmptyTile(MapTile):
         super().__init__(name = "",
                          desc = "",
                          event = """
-                         There is nothing to see here
+There is nothing to see here -_-
                          """,
                          x = 3,
                          y = 1)
@@ -418,7 +448,7 @@ class ShelveTile(MapTile):
         super().__init__(name = "shelve",
                          desc = "You see a shelve floating on the wall",
                          event = """
-                         Looks like a strong shelf
+Looks like a strong shelf
                          """,
                          x = 0,
                          y = 2)
@@ -435,7 +465,7 @@ class TableTile(MapTile):
         super().__init__(name = "table",
                         desc = "You see a table",
                         event = """
-                        The table appears to have four legs
+The table appears to have four legs
                         """,
                         x = 1,
                         y = 2)
@@ -455,7 +485,7 @@ class ChairTile(MapTile):
         super().__init__(name = "chair",
                          desc = "You see a chair sitting in the corner",
                          event = """
-                         It seems very sturdy
+It seems very sturdy
                          """,
                          x = 2,
                          y= 2)
@@ -464,18 +494,21 @@ class ChairTile(MapTile):
         if self.sitFlag:
             if self.keyFlag:
                 print("""
-                The chair made squeeked a little when you sat on it
+The chair made squeeked a little when you sat on it
                 """)
+                self.sitFlag = False
             else:
                 player.inventory.append(self.item)
                 print("""
-                Upon sitting on the chair you notice that it wobbles a little
-                and found a key for a chest underneath the legs
+Upon sitting on the chair you notice that it wobbles a little
+and found a key for a chest underneath the legs
                 """)
                 self.keyFlag = True
+                self.sitFlag = False
 
     def sit(self):
         self.sitFlag = True
+        self.searchFlag = False
 
     def availableActions(self, maxX, maxY):
         moves = self.defaultActions(maxX, maxY)

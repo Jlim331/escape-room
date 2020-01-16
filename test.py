@@ -7,11 +7,13 @@ from player import Player
 from collections import OrderedDict
 import action as act
 import os
+import re
 
 
 def intro():
     print("Welcome to escape room")
     name = input("Name: ").title
+    os.system('cls')
     return name
 
 player = Player(intro())
@@ -26,22 +28,31 @@ def getAvailaibleAction(room, player):
 
 def play():
     while not player.win and not player.giveUp:
+        actionFlag = False
         room = map.tileAt(player.y, player.x)
-        room.modifyPlayer(player)
         if player.win == True:
             break
         elif player.giveUp == True:
             break
         else:
-            # print("x: {}\ty: {}\tx: {}\ty: {}\t".format(room.x, room.y, player.x, player.y))
-            print(room.name.title())
-            print(room.desc.title())
+            print(room.name.title().center(96, "-"))
+            print(room.desc)
             availableActions = room.availableActions(arrayMaxX, arrayMaxY)
             for a in availableActions:
                 print("{}: {} \t ".format(a.hotKey[0].title(), a.name.title()), end = "")
+                if a.name == "search":
+                    print("")
             userIn = input("\nAction: ")
+            os.system('cls')
             for a in availableActions:
                 if userIn in a.hotKey:
-                    player.doAction(a, room, **a.kwargs)
+                    action = a
+                    actionFlag = True
+            if not actionFlag:
+                print("Invalid input")
+            else:
+                player.doAction(action, room, **a.kwargs)
+                room.modifyPlayer(player)
+
 
 play()

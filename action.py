@@ -16,9 +16,6 @@ class Action:
         self.hotKey = hotKey
         self.kwargs = kwargs
 
-    def __str__(self):
-        return "{}: {}".format(self.hotkey[0], self.name)
-
 
 class MoveUp(Action):
     def __init__(self):
@@ -147,49 +144,49 @@ class BookcaseTileSearch(Action):
 class BookcaseTileRead1(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.readBook1,
-                         name = "Minecraft: Combat Handbook: Ultimate Collector's Edition by Erik Aronsen",
+                         name = "read book 1",
                          hotKey = ["1", "read one", "read 1"])
 
 
 class BookcaseTileRead2(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.readBook2,
-                         name = "THE ESSENTIAL CALVIN AND HOBBES by Bill Watterson",
+                         name = "read book 2",
                          hotKey = ["2", "read two", "read 2"])
 
 
 class BookcaseTileRead3(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.readBook3,
-                         name = "Diary of a Wimpy Kid Book 1 by Jeff Kinney",
+                         name = "read book 3",
                          hotKey = ["3", "read three", "read 3"])
 
 
 class BookcaseTileRead4(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.readBook4,
-                         name = "Goosebumps: Welcome to Camp Nightmare by R L Stine",
+                         name = "read book 4",
                          hotKey = ["4", "read four", "read 4"])
 
 
 class BookcaseTileRead5(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.readBook5,
-                         name = "Little Red Riding Hood by Gaby Goldsack",
+                         name = "read book 5",
                          hotKey = ["5", "read five", "read 5"])
 
 
 class BookcaseTileRead6(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.readBook6,
-                         name = "Captain Underpants and the Tyrannical Retaliation of the Turbo Toilet 2000 by Dav Pilkey",
+                         name = "read book 6",
                          hotKey = ["6", "read six", "read 6"])
 
 
 class BookcaseTileRead7(Action):
     def __init__(self):
         super().__init__(method = map.BookcaseTile.readBook7,
-                         name = "The 39 Clues Book One: The Maze of Bones by Rick Riordan",
+                         name = "read book 7",
                          hotKey = ["7", "read seven", "read 7"])
 
 

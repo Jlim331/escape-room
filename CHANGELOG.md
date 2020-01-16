@@ -83,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Menu system to work with unique tile option
  - Movement system to display correct option to avoid crashed
 
-## [0.0.7] - 2020-01-15
+## [0.0.7] - 2020-01-14
 ### Added
  - Unique tile options
 
@@ -93,3 +93,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
  - Found an alternative to passing player class through kwargs
  - rename openDrawer to openDrawerFlag to fix openDrawer() not running
+
+## [0.0.8] - 2020-01-1
+### Changed
+ - searchFlag for each tile resets every time an action requiring search flag is ran
+ - The formatting of the text in the text interface
+ - The interface to clear after every action input
