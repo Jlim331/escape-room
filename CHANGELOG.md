@@ -87,8 +87,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
  - Unique tile options
 
-### Changed
- - Changed the old way on modifying player class
+### Changeds
 
 ### Fixed
  - Found an alternative to passing player class through kwargs

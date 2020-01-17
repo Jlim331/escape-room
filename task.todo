@@ -5,17 +5,20 @@ Task:
     ✔ create menu.py @done(2019-11-07 13:50) @project(Task)
     ✔ create locations.py @done(2019-11-07 13:50) @project(Task)
     ✔ Create Classes for objects in game @done(2019-12-09 21:44) @project(Task)
-    ☐ remove unnecessary code in map.py
+    ✔ remove unnecessary code in map.py @done(2020-01-16 17:37) @project(Task)
     ✔ change all return string for text ouput to print in map.py @done(2020-01-14 22:52) @project(Task)
     ✔ make a way for certain optios to disappear after being executed (Found a different way) @done(2020-01-14 22:52) @project(Task)
     ☐ find a way to add a 39 clue card to player inventory
     ✔ Fix the text format @done(2020-01-15 20:36) @project(Task)
     ☐ add more unique options
-    ☐ Do some alpha testing
-    ☐ Do some beta testing
+    ✔ Do some alpha testing @done(2020-01-16 17:37) @project(Task)
+    ✔ Do some beta testing @done(2020-01-16 17:37) @project(Task)
+    ☐ add a dificulty modifier
+    ☐ PEP 8 the entire code
+    ☐ comment the entire code
 
 Bugs:
-    ☐ Figure out why highlight player isn't working (not a game breaker, but a nice feature)
+    ✔ Figure out why highlight player isn't working (not a game breaker, but a nice feature) @done(2020-01-16 17:37) @project(Bugs)
     ✔ Fix Menu option @done(2020-01-13 20:59) @project(Bugs)
     ✔ Fix Movement system @done(2020-01-13 20:59) @project(Bugs)
     ✔ Find a way to pass player class through kwargs (Found a bypass) @done(2020-01-14 17:24) @project(Bugs)
@@ -39,8 +42,8 @@ Timeline:
     ✔ Create a way to show each unique option at the certain tile @done(2020-01-13 20:57) @project(Timeline)
     ✔ Create a way to move @done(2020-01-13 20:57) @project(Timeline)
     ✔ Create a way to generate map @done(2020-01-14 22:53) @project(Timeline)
-    ☐ Create Items (Optional)
-    ☐ Create a turn counter (Optional)
+    ☐ Create Items classes (Optional)
+    ✔ Create a turn counter (Optional) @done(2020-01-16 17:37) @project(Timeline)
     ✔ Implement the winning conditions @done(2020-01-13 16:11) @project(Timeline)
 
 Assignments:
@@ -48,7 +51,7 @@ Assignments:
     ✔ create modules and maps @done(2019-12-03 13:23) @project(Assignments)
 
 Classes:
-    ☐ Tile
-    ☐ Player
+    ✔ Tile @done(2020-01-16 17:37) @project(Classes)
+    ✔ Player @done(2020-01-16 17:37) @project(Classes)
     ☐ Items
-    ☐ Actions
+    ✔ Actions @done(2020-01-16 17:37) @project(Classes)

@@ -5,8 +5,8 @@
 import numpy as np
 import math as m
 import tabulate as tab
-import format as form
 import action as act
+import format as form
 global map  # globalize map to be used in other files
 
 
@@ -50,7 +50,7 @@ class MapTile:
 
     def search(self):
         self.searchFlag = True
-        print(self.event)
+        print(form.border(self.event))
 
     def getName(self):
         return self.name
@@ -69,12 +69,13 @@ class WinTile(MapTile):
         self.player = None
         self.open = False
         super().__init__(name = "locked door",
-                         desc = "You see a locked door with three locks",
-                         event = """
-Upon examination it looks like each lock needs a key to open the door.
-
-Do you wish to attempt to open the door?
-                         """,
+                         desc = "You see a locked door with some light " \
+                                "surface rust.\nYou try and open the " \
+                                "door but all you hear is a rattle",
+                         event = "\nUpon further examination it looks " \
+                                 "like each lock needs a key to open the " \
+                                 "door.\n\n Do you wish to attempt to open " \
+                                 "the door?\nPress o to search.\n",
                          x = 3,
                          y = 2)
 
@@ -82,14 +83,15 @@ Do you wish to attempt to open the door?
         if self.open:
             if player.inventory.count("key") == 3:
                 player.win = True
-                print("""
-Congratulation on finding three keys
-You win!
-                """)
+                print(f"Turn {player.turnCounter}")
+                print(form.border("""
+                Congratulation on finding three keys
+                You win!
+                """))
             else:
-                print("""
-You need to collect 3 keys to unlock this door
-                """)
+                print(form.border("""
+                You need to collect 3 keys to unlock this door
+                """))
                 self.open = False
 
     def openDoor(self):
@@ -111,13 +113,11 @@ class StartTile(MapTile):
     """Class to create the starting tile"""
     def __init__(self):
         super().__init__(name = "start",
-                         desc = """
-Welcome to the escape room!!!
-The games objective is to find all three keys in the
-
-What would you like to do?
-                         """,
-                         event = "Nothing to see here :)",
+                         desc = "Welcome to the escape room!!!\nThe " \
+                                "objective of the game is to find all three " \
+                                "keys in the scattered in the room." \
+                                "\nGood Luck!",
+                         event = "\nNothing to see here :)\n",
                          x = 1,
                          y = 1)
 
@@ -135,19 +135,20 @@ class EndTile(MapTile):
         self.open = False
         super().__init__(name = "exit",
                          desc = "You see a bright exit sign on top of a door",
-                         event = """
- You see a door with an exit sign on top, do you wish to open the door?
- WARNING - THIS WILL BE TREATED AS YOU GIVING UP ON THE GAME - WARNING
-                         """,
+                         event = "You see a door with an exit sign on top, " \
+                                 "do you wish to open the door?\nWARNING - " \
+                                 "THIS WILL BE TREATED AS YOU GIVING UP ON " \
+                                 "THE GAME - WARNING",
                          x = 3,
                          y = 0)
 
     def modifyPlayer(self, player):
         if self.open:
             player.giveUp = True
-            print("""
+            print(f"Turn {player.turnCounter}")
+            print(form.border("""
             You lose
-                """)
+            """))
             self.open = False
 
     def openDoor(self):
@@ -171,44 +172,40 @@ class CabinetTile(MapTile):
         self.keyFlag = False
         super().__init__(name = "cabinet",
                          desc = "You see a brown cabinet with two doors open",
-                         event = """
- You see a generic cabinet with some clothes hanged,
- a mirror and a drawer.
-
- What would you like to do?
-                         """,
+                         event = "You see a generic cabinet with some " \
+                                 "clothes hanged, a mirror and a drawer.",
                          x = 0,
                          y = 0)
 
     def modifyPlayer(self, player):
         if self.openDrawerFlag:
             if self.keyFlag:
-                print("""
-you opened the drawer and see nothing
-                """)
+                print(form.border("""
+                you opened the drawer and see nothing
+                """))
                 self.openDrawerFlag = False
             else:
-                print("""
-You opened the drawer and found a key!
+                print(form.border("""
+                You opened the drawer and found a key!
 
-You picked up the key.
-                """)
+                You picked up the key.
+                """))
                 player.inventory.append("key")
                 self.keyFlag = True
                 self.openDrawerFlag = False
 
     def searchClothes(self):
         self.searchFlag = False
-        print("""
-You searched through the clothes and noticed some Balenciaga,
-Supreme, Gucci, Louis Voutton, but didn't find any keys at all.
-        """)
+        print(form.border("""
+        You searched through the clothes and noticed some Balenciaga,
+        Supreme, Gucci, Louis Voutton, but didn't find any keys at all.
+        """))
 
     def lookMirror(self):
         self.searchFlag = False
-        print("""
-You look in the mirror and notice a reflection that resembles yourself
-        """)
+        print(form.border("""
+        You look in the mirror and notice a reflection that resembles yourself
+        """))
 
     def openDrawer(self):
         self.searchFlag = False
@@ -218,7 +215,8 @@ You look in the mirror and notice a reflection that resembles yourself
         moves = self.defaultActions(maxX, maxY)
         moves.append(act.CabinetTileSearch())
         if self.searchFlag == True:
-            moves.extend([act.CabinetTileSearchClothes(), act.CabinetTileLookMirror(), act.CabinetTileOpenDrawer()])
+            moves.extend([act.CabinetTileSearchClothes(),
+            act.CabinetTileLookMirror(), act.CabinetTileOpenDrawer()])
         return moves
 
 
@@ -230,10 +228,10 @@ class ChestTile(MapTile):
         self.openChestFlag = False
         self.openFlag = False
         super().__init__(name = "chest",
-                         desc = "you see a chest in the corner, covered with dust",
+                         desc = "You see a chest in the corner," \
+                                "covered with dust",
                          event = """
  You see a chest
- What would you like to do?
                          """,
                          x = 1,
                          y = 0)
@@ -285,8 +283,6 @@ class BookcaseTile(MapTile):
                          event = """
  You see a bookcase filled with a variety of books with the
  most common color being red
-
- What would you like to do?
                          """,
                          x = 2,
                          y = 0)
@@ -387,7 +383,10 @@ The 39 Clues Book One: The Maze of Bones by Rick Riordan
         moves = self.defaultActions(maxX, maxY)
         moves.append(act.BookcaseTileSearch())
         if self.searchFlag == True:
-            moves.extend([act.BookcaseTileRead1(), act.BookcaseTileRead2(), act.BookcaseTileRead3(), act.BookcaseTileRead4(), act.BookcaseTileRead5(), act.BookcaseTileRead6(), act.BookcaseTileRead7()])
+            moves.extend([act.BookcaseTileRead1(), act.BookcaseTileRead2(),
+            act.BookcaseTileRead3(), act.BookcaseTileRead4(),
+            act.BookcaseTileRead5(), act.BookcaseTileRead6(),
+            act.BookcaseTileRead7()])
         return moves
 
 bookcaseTile = BookcaseTile("key")
@@ -542,14 +541,30 @@ def tileExist(x, y, maxX, maxY):
     else:
         return False
 
-def highlighPos(y, x, array):
+
+def objArrayConv(array):
+    """Creates an array from a list and determines the number of row and col"""
+    list = []
+    maxY = len(array)
+    for y in array:
+        maxX = len(y)
+        for x in y:
+            list.append(x.name)
+    # creates a numpy array with the list and sqrtElem being the row and col
+    array = np.array(list).reshape(maxY, maxX)
+    return array
+
+
+def highlightPos(y, x, array):
     """Function that takes an x and y cord of an array and highlights that
     item"""
-    highlightTile = "~" + array[y][x].name + "~"
+    strArray = objArrayConv(array)
+    tileAt = "~ {} ~".format(strArray[y][x])
     # replaces old tile with new tiles
-    highlighted = np.where(array == array[y][x], "You are here", array)
+    highlighted = np.where(strArray == strArray[y][x], tileAt, strArray)
     # prints out the table but with the highlighted tile higlighted
-    print(tab.tabulate(highlighted, tablefmt="grid"))
+    table = tab.tabulate(highlighted, tablefmt="grid")
+    print(table)
 
 
 def findMax(array):
@@ -557,70 +572,3 @@ def findMax(array):
     max = len(array) - 1
     max = int(max)
     return max
-
-
-def listGen(dictionary, list):
-    """Appends the key of a dictionary to a list"""
-    for i in dictionary:  # appends each key of the dictionary to a list
-        list.append(i)
-
-
-def removeName(list):
-    """Function to remove the key description from a list"""
-    for i in list:  # searches for description and removes it
-        if i == "description":
-            list.remove("description")
-
-
-def arrayGen(list):
-    """Creates an array from a list and determines the number of row and col"""
-    removeDesc(list)
-    elem = len(list)  # finds how many items are in a list
-    sqrtElem = m.sqrt(elem)  # finds the squareroot of elem
-    if isinstance(sqrtElem, int) is False:  # checks if sqrt is an integer
-        sqrtElem = int(m.ceil(sqrtElem))  # rounds up sqrtElem
-    else:
-        sqrtElem = int(sqrtElem)
-    # finds the difference between elem and sqrt and then appendss for the diff
-    diffElem = int(m.pow(sqrtElem, 2)) - elem
-    for i in range(diffElem):
-        list.append("")
-    # creates a numpy array with the list and sqrtElem being the row and col
-    array = np.array(list).reshape(sqrtElem, sqrtElem)
-    return array
-
-
-def randArrayGen(list):
-    """Creates an array from a list and determines the number of row and col"""
-    removeDesc(list)
-    np.random.shuffle(list)
-    elem = len(list)  # finds how many items are in a list
-    sqrtElem = m.sqrt(elem)  # finds the squareroot of elem
-    if isinstance(sqrtElem, int) is False:  # checks if sqrt is an integer
-        sqrtElem = int(m.ceil(sqrtElem))  # rounds up sqrtElem
-    else:
-        sqrtElem = int(sqrtElem)
-    # finds the difference between elem and sqrt and then appendss for the diff
-    diffElem = int(m.pow(sqrtElem, 2)) - elem
-    for i in range(diffElem):
-        list.append("")
-    # creates a numpy array with the list and sqrtElem being the row and col
-    array = np.array(list).reshape(sqrtElem, sqrtElem)
-    return array
-
-
-def CenterStart(array):
-    """Appends to the center of the array 'start' and then appends the old
-    center value to a blank value, array must contain a blank value"""
-    center = m.ceil(float(len(array)) / 2)  # finds the center of the array
-    center = center - 1
-    centerTile = array[center, center]  # finds the value of the center tile
-    # replaces the corner value with the center tile
-    array[-1][-1] = centerTile
-    array[center][center] = "start"  # replaces the center tile with start
-    return array
-
-def choicePrinter(playerx, playery, tilex, tiley, tileOption):
-    if playerx == tilex and playery ==tiley:
-        for option in tileOption:
-            print(option)

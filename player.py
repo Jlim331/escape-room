@@ -20,12 +20,21 @@ class Player():
         self.y = 1  # value for start tile
         self.win = False
         self.giveUp = False
+        self.turnCounter = 0
 
     def viewInventory(self):
         """function for viewing the inventory of the player"""
-        print("Your inventory: ")
-        for i in self.inventory:
-            print(f"\t{i}")  # prints list
+        print("""
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Your inventory:""".strip("\n"))
+        if self.inventory:
+            for i in self.inventory:
+                print(f"\t{i}".title())  # prints list
+        else:
+            print("Nothing")
+        print("""
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        """.strip())
 
     def description(self):
         """function for generating a description"""
@@ -38,6 +47,7 @@ class Player():
 
     def quit(self):
         self.giveUp = True
+        print(f"Turn {self.turnCounter}")
         print("Thank you for playing!")
 
     def moveUp(self):

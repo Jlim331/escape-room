@@ -1,7 +1,7 @@
 # Josh Lim
 # Comp Sci 30 P4
 # 01/09/2020
-# File to test code
+# File to run code
 import map
 from player import Player
 import action as act
@@ -14,18 +14,16 @@ def intro():
     os.system('cls')
     return name
 
+
 player = Player(intro())
+
 
 escapeRoom = map.map
 arrayMaxX = map.findMax(escapeRoom) + 1  # finds max x
 arrayMaxY = map.findMax(escapeRoom)  # finds max y
 
-def getAvailaibleAction(room, player):
-    actions = OrderedDict()
-
 
 def play():
-    turnCounter = 0
     while not player.win and not player.giveUp:
         actionFlag = False
         room = map.tileAt(player.y, player.x)
@@ -33,20 +31,25 @@ def play():
             break
         elif player.giveUp == True:
             break
+        # elif player.turnCounter >= 91:
+        #     print("You have surpassed 90 turns and ran out of time, you lose")
+        #     break
         else:
-            print(room.name.title().center(96, "-"))
-            print("Turn " + str(turnCounter))
-            print(room.desc)
+            print("Turn " + str(player.turnCounter))
+            map.highlightPos(player.y, player.x, escapeRoom)
+            print("\n" + room.desc + "\n")
             availableActions = room.availableActions(arrayMaxX, arrayMaxY)
+            print("What would you like to do? \n")
             for a in availableActions:
-                print("{}: {} \t ".format(a.hotKey[0].title(), a.name.title()), end = "")
+                print("{}: {} \t ".format(a.hotKey[0].title(), a.name.title())
+                ,end = "")
                 if a.name == "search":
                     print("")
             userIn = input("\nAction: ")
             os.system('cls')
             for a in availableActions:
                 if userIn in a.hotKey:
-                    turnCounter = turnCounter + 1
+                    player.turnCounter += 1
                     action = a
                     actionFlag = True
             if not actionFlag:
