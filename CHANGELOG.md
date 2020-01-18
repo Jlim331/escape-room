@@ -93,8 +93,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Found an alternative to passing player class through kwargs
  - rename openDrawer to openDrawerFlag to fix openDrawer() not running
 
-## [0.0.8] - 2020-01-1
+## [0.0.8] - 2020-01-15
 ### Changed
  - searchFlag for each tile resets every time an action requiring search flag is ran
  - The formatting of the text in the text interface
  - The interface to clear after every action input
+
+## [0.0.9] - 2020-01-16
+### Added
+ - Added a map that highlights player location as it is updated
+
+### Changed
+ - Updated the format of the text interface to look nicer

@@ -14,8 +14,8 @@ Task:
     ✔ Do some alpha testing @done(2020-01-16 17:37) @project(Task)
     ✔ Do some beta testing @done(2020-01-16 17:37) @project(Task)
     ☐ add a dificulty modifier
-    ☐ PEP 8 the entire code
-    ☐ comment the entire code
+    ✔ PEP 8 the entire code @done(2020-01-17 22:11) @project(Task)
+    ✔ comment the entire code @done(2020-01-17 22:11) @project(Task)
 
 Bugs:
     ✔ Figure out why highlight player isn't working (not a game breaker, but a nice feature) @done(2020-01-16 17:37) @project(Bugs)
