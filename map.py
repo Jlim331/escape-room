@@ -359,6 +359,8 @@ class BookcaseTile(MapTile):
 
     def readBook1(self):
         """Method for reading book 1"""
+        # summary from https://www.chapters.indigo.ca/en-ca/books/minecraft-
+        # combat-handbook-ultimate-collectors/9781537037868-item.html
         print(form.border("""
 Minecraft: Combat Handbook: Ultimate Collector's Edition by Erik Aronsen
     The Masterpiece from Amazon #1 Bestselling Minecraft Authors Creative
@@ -370,6 +372,10 @@ Minecraft: Combat Handbook: Ultimate Collector's Edition by Erik Aronsen
 
     def readBook2(self):
         """Method for reading book 2"""
+        # summary from https://www.amazon.ca/Essential-Calvin-Hobbes-Bill-
+        # Watterson/dp/0836218051/ref=sr_1_1?crid=1YAN87VEA3JWD&keywords=the+
+        # essential+calvin+and+hobbes&qid=1579321108&sprefix=the+essential+cal
+        # %2Caps%2C181&sr=8-1
         print(form.border("""
 THE ESSENTIAL CALVIN AND HOBBES by Bill Watterson
     Beginning with the day Hobbes sprang into Calvin's tuna fish trap, the
@@ -381,6 +387,10 @@ THE ESSENTIAL CALVIN AND HOBBES by Bill Watterson
 
     def readBook3(self):
         """Method for reading book 3"""
+        # summary from https://www.amazon.ca/DIARY-WIMPY-Kinney-Author-
+        # Hardcover/dp/B0051XV5Y6/ref=sr_1_13?crid=2YHZ0XW6OKNET&keywords=
+        # diary+of+a+wimpy&qid=1579321142&sprefix=dairy+of+a+wimpy%2Caps
+        # %2C184&sr=8-13
         print(form.border("""
 Diary of a Wimpy Kid Book 1 by Jeff Kinney
     It’s a new school year, and Greg Heffley finds himself thrust into middle
@@ -392,6 +402,9 @@ Diary of a Wimpy Kid Book 1 by Jeff Kinney
 
     def readBook4(self):
         """Method for reading book 4"""
+        # summary from https://www.amazon.ca/Goosebumps-Welcome-Camp-Nightmare
+        # -Stine/dp/0545158893/ref=sr_1_7?keywords=goosebumps&qid=1579321183&
+        # sr=8-7
         print(form.border("""
 Goosebumps: Welcome to Camp Nightmare by R L Stine
     The food isn't great. The counselors are strange. And the camp director
@@ -403,6 +416,9 @@ Goosebumps: Welcome to Camp Nightmare by R L Stine
 
     def readBook5(self):
         """Method for reading book 5"""
+        # summary from https://www.amazon.ca/Little-Riding-Hood-Gaby-Goldsack
+        # /dp/1680524488/ref=sr_1_1?keywords=little+red+riding+hood+book&qid=
+        # 1579321224&sr=8-1
         self.openBookFlag = True  # book 5 is being read
         print(form.border("""
 Little Red Riding Hood by Gaby Goldsack
@@ -415,6 +431,11 @@ Little Red Riding Hood by Gaby Goldsack
 
     def readBook6(self):
         """Method for reading book 6"""
+        # summary from https://www.amazon.ca/Captain-Underpants-Tyrannical-
+        # Retaliation-Toilet/dp/0545504902/ref=sr_1_2?crid=28U0PXHDGQBN7&
+        # keywords=captain+underpants+and+the+terrifying+return+of+tippy+
+        # tinkletrousers&qid=1579321256&sprefix=captain+underpants+and+the+
+        # %2Caps%2C180&sr=8-2
         print(form.border("""
 Captain Underpants and the Tyrannical Retaliation of the Turbo Toilet 2000
 by Dav Pilkey
@@ -428,6 +449,8 @@ by Dav Pilkey
 
     def readBook7(self):
         """Method for reading book 7"""
+        # summary from https://www.amazon.ca/39-Clues-Book-One-Bones/dp/
+        # 0545060397/ref=sr_1_7?keywords=the+39+clues&qid=1579321295&sr=8-7
         print(form.border("""
 The 39 Clues Book One: The Maze of Bones by Rick Riordan
     Minutes before she died Grace Cahill changed her will, leaving her
